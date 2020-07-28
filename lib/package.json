@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit",
+    "test": "jest --runInBand"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.7",
+    "jest": "^26.1.0",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
+  }
+}
