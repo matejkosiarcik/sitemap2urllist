@@ -1,0 +1,38 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: "/lib/"
+    versioning-strategy: increase
+    schedule:
+      interval: daily
+      time: "01:00"
+      timezone: "Europe/Bratislava"
+    reviewers:
+      - matejkosiarcik
+    assignees:
+      - matejkosiarcik
+
+  - package-ecosystem: npm
+    directory: "/web/"
+    versioning-strategy: increase
+    schedule:
+        interval: daily
+        time: "02:00"
+        timezone: "Europe/Bratislava"
+    reviewers:
+        - matejkosiarcik
+    assignees:
+        - matejkosiarcik
+
+  - package-ecosystem: npm
+    directory: "/bin/"
+    versioning-strategy: increase
+    schedule:
+        interval: daily
+        time: "03:00"
+        timezone: "Europe/Bratislava"
+    reviewers:
+        - matejkosiarcik
+    assignees:
+        - matejkosiarcik
