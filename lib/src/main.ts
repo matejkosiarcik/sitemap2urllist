@@ -1,5 +1,4 @@
 import { xml2json } from 'xml-js'
-import * as fs from 'fs'
 import 'isomorphic-fetch'
 
 export class Options {
@@ -7,22 +6,6 @@ export class Options {
 
     constructor(encoding: BufferEncoding | null = null) {
         this.encoding = encoding
-    }
-}
-
-export function sitemap2urllistFiles(input: string, output: string, options: Options | null = null) {
-    let inputContent: string | Buffer
-    if (typeof input === 'string') {
-        inputContent = fs.readFileSync(input)
-    } else {
-        throw `Unsupported input path "${input}" of type ${typeof input}`
-    }
-
-    let outputContent = sitemap2urllist(inputContent, options ?? { encoding: 'utf-8' })
-    if (typeof output === 'string') {
-        fs.writeFileSync(output, outputContent)
-    } else {
-        throw `Unsupported output path "${output}" of type ${typeof output}`
     }
 }
 

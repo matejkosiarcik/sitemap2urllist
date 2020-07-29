@@ -1,4 +1,4 @@
-import { sitemap2urllist, sitemap2urllistFiles } from '../src/main'
+import { sitemap2urllist } from '../src/main'
 import * as path from 'path'
 import * as fs from 'fs'
 
@@ -41,28 +41,6 @@ describe('Test good inputs', () => {
 
         // then
         expect(result).toBe(output)
-    })
-
-    test.each([
-        'zero',
-        'single',
-        'multiple',
-        // 'alternative',
-        // 'order-alphanum',
-        // 'order-priority',
-    ])('Filepath %s-in.xml', async (name) => {
-        // given
-        const tmpDir = fs.mkdtempSync('tmp')
-        const inputPath = path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`)
-        const outputPath = path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)
-
-        // when
-        const resultPath = path.join(tmpDir, 'urllist.txt')
-        sitemap2urllistFiles(inputPath, resultPath)
-
-        // then
-        expect(fs.readFileSync(resultPath).toString()).toBe(fs.readFileSync(outputPath).toString())
-        fs.rmdirSync(tmpDir, { recursive: true })
     })
 })
 
@@ -107,30 +85,5 @@ describe('Test bad inputs', () => {
         // then
         expect(result).toBeFalsy()
         expect(error).toBeTruthy()
-    })
-
-    test.each([
-        'void',
-        'void-almost',
-    ])('Filepath %s.xml', async (name) => {
-        // given
-        const tmpDir = fs.mkdtempSync('tmp')
-        const inputPath = path.join(projectPath, 'sitemaps', 'bad', `${name}.xml`)
-
-        // when
-        const resultPath = path.join(tmpDir, 'urllist.txt')
-
-        // when
-        let error: any = null
-        try {
-            sitemap2urllistFiles(inputPath, resultPath)
-        } catch (err) {
-            error = err
-        }
-
-        // then
-        expect(error).toBeTruthy()
-        expect(fs.existsSync(resultPath)).toBeFalsy()
-        fs.rmdirSync(tmpDir, { recursive: true })
     })
 })
