@@ -1,5 +1,7 @@
 {
   "private": true,
+  "name": "sitemap2urllist",
+  "main": "build/main.js",
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit",

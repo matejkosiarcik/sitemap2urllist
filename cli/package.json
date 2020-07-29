@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "sitemap2urllist-cli",
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit",
