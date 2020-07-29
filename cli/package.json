@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit",
+    "test": "cross-env COMMAND=\"npx --quiet ts-node src/main.ts\" bats --recursive tests"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.26",
+    "@types/yargs": "^15.0.5",
+    "bats": "^1.1.0",
+    "cross-env": "^7.0.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "yargs": "^15.4.1"
+  }
+}
