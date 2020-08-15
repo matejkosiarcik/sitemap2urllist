@@ -2,7 +2,7 @@ import * as process from 'process'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as yargs from 'yargs'
-import { sitemap2urllist } from '../../lib/src/main' // TODO: lerna
+import { sitemap2urllist } from 'sitemap2urllist'
 import { assert } from 'console'
 
 // parse arguments

@@ -1,0 +1,16 @@
+version: 2.1
+
+workflows:
+  version: 2
+  circleci-build:
+    jobs:
+      - azlint
+
+jobs:
+  azlint:
+    docker:
+      - image: matejkosiarcik/azlint
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: azlint

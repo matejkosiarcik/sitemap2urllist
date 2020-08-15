@@ -1,0 +1,29 @@
+language: generic
+
+addons:
+  apt:
+    update: true
+  homebrew:
+    update: true
+    brewfile: true
+
+matrix:
+  fast_finish: true
+  include:
+    - { os: linux }
+    - { os: osx, osx_image: xcode12, if: branch == master }
+
+install:
+  - |
+    if [ "$(uname -s)" = Linux ]; then
+      nvm install
+    elif [ "$(uname -s)" = Darwin ]; then
+      nvm unload
+      rm -rf "${NVM_DIR}"
+    fi
+  - make bootstrap
+
+script:
+  - make lint
+  - make build
+  - make test
