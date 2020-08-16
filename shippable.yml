@@ -7,4 +7,4 @@ build:
   ci:
     - node --version
     - npm --version
-    - npm install --unsafe-perm
+    - make

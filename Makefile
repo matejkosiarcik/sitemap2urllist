@@ -13,7 +13,7 @@ all: bootstrap lint build
 
 .PHONY: bootstrap
 bootstrap:
-	(npm install) || (npm install --unsafe-perm) || (npm run postinstall)
+	if npm install; then true; else npm install --unsafe-perm; fi
 
 .PHONY: lint
 lint:
