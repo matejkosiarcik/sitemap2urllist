@@ -5,6 +5,13 @@
   "bin": {
     "sitemap2urllist": "./build/main.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "package.json",
+    "build/main.js"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit",
