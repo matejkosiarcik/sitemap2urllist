@@ -14,7 +14,7 @@ function teardown() {
 
 function test() {
     # when
-    run ${COMMAND} -f "../sitemaps/bad/${1}.xml" -o "${tmpdir}/out.txt"
+    run ${COMMAND} -f "../sitemaps/bad/${1}.xml.txt" -o "${tmpdir}/out.txt"
 
     # then
     [ ! -e "${tmpdir}/out.txt" ]
