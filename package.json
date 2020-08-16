@@ -6,8 +6,7 @@
     "web"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "postinstall": "npm run bootstrap"
+    "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
     "lerna": "^3.22.1",
