@@ -17,22 +17,22 @@ updates:
     directory: "/web/"
     versioning-strategy: increase
     schedule:
-        interval: daily
-        time: "02:00"
-        timezone: "Europe/Bratislava"
+      interval: daily
+      time: "02:00"
+      timezone: "Europe/Bratislava"
     reviewers:
-        - matejkosiarcik
+      - matejkosiarcik
     assignees:
-        - matejkosiarcik
+      - matejkosiarcik
 
   - package-ecosystem: npm
     directory: "/bin/"
     versioning-strategy: increase
     schedule:
-        interval: daily
-        time: "03:00"
-        timezone: "Europe/Bratislava"
+      interval: daily
+      time: "03:00"
+      timezone: "Europe/Bratislava"
     reviewers:
-        - matejkosiarcik
+      - matejkosiarcik
     assignees:
-        - matejkosiarcik
+      - matejkosiarcik
