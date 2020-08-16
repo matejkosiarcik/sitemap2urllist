@@ -50,7 +50,7 @@ describe('Test bad inputs', () => {
         'void-almost',
     ])('String sitemaps/%s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml`)).toString()
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml.txt`)).toString()
 
         // when
         let result: any = null
@@ -71,7 +71,7 @@ describe('Test bad inputs', () => {
         'void-almost',
     ])('Buffer %s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml`))
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml.txt`))
 
         // when
         let result: any = null
