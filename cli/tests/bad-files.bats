@@ -2,7 +2,7 @@
 # shellcheck disable=SC2086
 
 function setup() {
-    cd "${BATS_TEST_DIRNAME}/.." # project root
+    cd "${BATS_TEST_DIRNAME}/.." || exit 1 # project root
     if [ -z "${COMMAND+x}" ]; then exit 1; fi
     tmpdir="$(mktemp -d)"
     export tmpdir
