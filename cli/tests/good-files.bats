@@ -35,7 +35,7 @@ function test() {
 }
 
 @test 'Test alternate' {
-    test zero
+    test alternate
 }
 
 @test 'Test order-alphanum' {

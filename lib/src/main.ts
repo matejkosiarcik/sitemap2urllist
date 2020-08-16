@@ -49,7 +49,21 @@ function parseSingleEntry(entry: any): SitemapEntry {
         priority = '0.5'
     }
 
-    return new SitemapEntry(loc, [], parseFloat(priority))
+    let alternates: string[] = []
+    const alternatesXml = entry['xhtml:link']
+    if (Array.isArray(alternatesXml)) {
+        alternatesXml.forEach(alt => {
+            try {
+                alternates.push(alt['_attributes']['href'])
+            } catch (_) { }
+        })
+    } else if (alternatesXml) {
+        try {
+            alternates.push(alternatesXml['_attributes']['href'])
+        } catch (_) { }
+    }
+
+    return new SitemapEntry(loc, alternates.sort(), parseFloat(priority))
 }
 
 function parseSitemapToEntries(xml: string): SitemapEntry[] {
@@ -73,7 +87,7 @@ function convertEntriesToUrls(entries: SitemapEntry[]): string[] {
         return left.url.localeCompare(right.url)
     }
 
-    return entries.sort(sorter).map(entry => entry.url)
+    return entries.sort(sorter).flatMap(entry => [entry.url].concat(entry.altUrls))
 }
 
 export function sitemap2urllist(data: string | Buffer, options: Options | null = null): string {

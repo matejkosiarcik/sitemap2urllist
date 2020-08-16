@@ -9,7 +9,7 @@ describe('Test good inputs', () => {
         'zero',
         'single',
         'multiple',
-        // 'alternative',
+        'alternate',
         'order-alphanum',
         'order-priority',
     ])('String sitemaps/%s-in.xml', async (name) => {
@@ -28,7 +28,7 @@ describe('Test good inputs', () => {
         'zero',
         'single',
         'multiple',
-        // 'alternative',
+        'alternate',
         'order-alphanum',
         'order-priority',
     ])('Buffer %s-in.xml', async (name) => {
