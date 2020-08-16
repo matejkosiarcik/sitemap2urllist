@@ -1,6 +1,6 @@
 {
   "name": "@matejkosiarcik/sitemap2urllist",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "build/main.js",
   "types": "build/main.d.ts",
