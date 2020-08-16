@@ -4,6 +4,12 @@
 
 <!-- toc -->
 
+- [Installation](#installation)
+- [CLI usage](#cli-usage)
+- [Library usage](#library-usage)
+
+<!-- tocstop -->
+
 ## Installation
 
 ```sh
