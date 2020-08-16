@@ -41,3 +41,15 @@ import { sitemap2urllist } from '@matejkosiarcik/sitemap2urllist'
 const sitemapXmlContent: string = ...
 const urllistTxtContent: string = sitemap2urllist(sitemapXmlContent)
 ```
+
+## Limitations
+
+Does not support sitemap references (xpath: `/sitemapindex/sitemap/loc`).
+
+## Similar projects
+
+I could not find anything available to run locally (from terminal).
+
+Kinda similar tools:
+
+[robhammond.co/tools/xml-extract](https://robhammond.co/tools/xml-extract) (only website)
