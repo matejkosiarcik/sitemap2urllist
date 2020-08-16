@@ -11,7 +11,7 @@ describe('Test good inputs', () => {
         'multiple',
         // 'alternative',
         // 'order-alphanum',
-        // 'order-priority',
+        'order-priority',
     ])('String sitemaps/%s-in.xml', async (name) => {
         // given
         const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`)).toString()
@@ -30,7 +30,7 @@ describe('Test good inputs', () => {
         'multiple',
         // 'alternative',
         // 'order-alphanum',
-        // 'order-priority',
+        'order-priority',
     ])('Buffer %s-in.xml', async (name) => {
         // given
         const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`))

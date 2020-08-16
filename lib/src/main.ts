@@ -66,7 +66,7 @@ function parseSitemapToEntries(xml: string): SitemapEntry[] {
 }
 
 function convertEntriesToUrls(entries: SitemapEntry[]): string[] {
-    return entries.map(entry => entry.url)
+    return entries.sort((left, right) => right.priority - left.priority).map(entry => entry.url)
 }
 
 export function sitemap2urllist(data: string | Buffer, options: Options | null = null): string {

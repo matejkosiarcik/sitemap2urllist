@@ -43,5 +43,5 @@ function test() {
 }
 
 @test 'Test order-priority' {
-    test multiple
+    test priority
 }
