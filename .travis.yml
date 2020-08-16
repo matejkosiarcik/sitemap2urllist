@@ -30,16 +30,7 @@ script:
 
 deploy:
   - provider: npm
-    src: lib
-    edge: true
-    skip_cleanup: true
-    email: matej.kosiarcik@gmail.com
-    access: public
-    api_key: "${NPM_TOKEN}"
-    on:
-      tags: true
-  - provider: npm
-    src: cli
+    run_script: publish
     edge: true
     skip_cleanup: true
     email: matej.kosiarcik@gmail.com
