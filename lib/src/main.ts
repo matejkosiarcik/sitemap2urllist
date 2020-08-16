@@ -1,4 +1,5 @@
 import { xml2json } from 'xml-js'
+import { URL } from 'url'
 import 'isomorphic-fetch'
 
 export class Options {
@@ -9,13 +10,22 @@ export class Options {
     }
 }
 
-function getSitemapContent(data: string | Buffer, options: Options | null): string {
+function getSitemapContent(data: string | Buffer | URL, options: Options | null): string {
     // TODO: accept URL?
     let xml: string
     if (Buffer.isBuffer(data)) {
         xml = data.toString(options?.encoding ?? 'utf-8')
     } else if (typeof data === 'string') {
         xml = data
+    } else if (data instanceof URL) {
+        // if (data.protocol === 'file:') {
+        //     // TODO: read file
+        //     // data.pathname
+        // } else if (data.protocol === 'https:' || data.protocol === 'http:') {
+        //     // TODO: fetch url
+        //     // await fetch(data.href)
+        // }
+        throw `URLs not yet supported`
     } else {
         throw `Unknown input "${data}" of type ${typeof data}`
     }
