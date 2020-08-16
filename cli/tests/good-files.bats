@@ -39,9 +39,9 @@ function test() {
 }
 
 @test 'Test order-alphanum' {
-    test single
+    test order-alphanum
 }
 
 @test 'Test order-priority' {
-    test priority
+    test order-priority
 }

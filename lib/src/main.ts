@@ -66,7 +66,14 @@ function parseSitemapToEntries(xml: string): SitemapEntry[] {
 }
 
 function convertEntriesToUrls(entries: SitemapEntry[]): string[] {
-    return entries.sort((left, right) => right.priority - left.priority).map(entry => entry.url)
+    const sorter = (left: SitemapEntry, right: SitemapEntry): number => {
+        if (right.priority != left.priority) {
+            return right.priority - left.priority
+        }
+        return left.url.localeCompare(right.url)
+    }
+
+    return entries.sort(sorter).map(entry => entry.url)
 }
 
 export function sitemap2urllist(data: string | Buffer, options: Options | null = null): string {
