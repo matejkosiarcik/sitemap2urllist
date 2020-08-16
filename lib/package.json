@@ -1,9 +1,17 @@
 {
-  "private": true,
-  "name": "sitemap2urllist",
+  "name": "@matejkosiarcik/sitemap2urllist",
   "version": "0.0.0",
+  "license": "MIT",
   "main": "build/main.js",
   "types": "build/main.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "package.json",
+    "build/main.js",
+    "build/main.d.ts"
+  ],
   "scripts": {
     "build": "tsc --declaration",
     "lint": "tsc --noEmit",

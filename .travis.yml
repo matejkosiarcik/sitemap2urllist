@@ -11,7 +11,7 @@ matrix:
   fast_finish: true
   include:
     - { os: linux }
-    - { os: osx, osx_image: xcode12, if: branch == master AND type != push }
+    - { os: osx, osx_image: xcode11.6, if: branch == master AND type != push }
 
 install:
   - |
@@ -27,3 +27,23 @@ script:
   - make lint
   - make build
   - make test
+
+deploy:
+  - provider: npm
+    src: lib
+    edge: true
+    skip_cleanup: true
+    email: matej.kosiarcik@gmail.com
+    access: public
+    api_key: "${NPM_TOKEN}"
+    on:
+      tags: true
+  - provider: npm
+    src: cli
+    edge: true
+    skip_cleanup: true
+    email: matej.kosiarcik@gmail.com
+    access: public
+    api_key: "${NPM_TOKEN}"
+    on:
+      tags: true
