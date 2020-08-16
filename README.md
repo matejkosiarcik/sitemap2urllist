@@ -1,3 +1,3 @@
 # Sitemap to Urllist
 
-Simple sitemap.xml to urllist.txt converter
+> Simple sitemap.xml to urllist.txt converter
