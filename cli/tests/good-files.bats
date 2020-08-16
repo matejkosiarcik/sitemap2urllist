@@ -35,13 +35,13 @@ function test() {
 }
 
 @test 'Test alternate' {
-    test zero
+    test alternate
 }
 
 @test 'Test order-alphanum' {
-    test single
+    test order-alphanum
 }
 
 @test 'Test order-priority' {
-    test multiple
+    test order-priority
 }
