@@ -14,7 +14,7 @@
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.7",
+    "@types/jest": "^26.0.10",
     "jest": "^26.1.0",
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7"
