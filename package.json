@@ -1,9 +1,16 @@
 {
   "private": true,
+  "workspaces": [
+    "lib",
+    "cli",
+    "web"
+  ],
   "scripts": {
-    "postinstall": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "postinstall": "npm run bootstrap"
   },
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "yarn": "^1.22.4"
   }
 }

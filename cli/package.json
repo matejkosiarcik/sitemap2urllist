@@ -16,7 +16,7 @@
     "bats": "^1.1.0",
     "cross-env": "^7.0.2",
     "typescript": "^3.9.7",
-    "sitemap2urlllist": "0.0.0"
+    "sitemap2urllist": "0.0.0"
   },
   "dependencies": {
     "yargs": "^15.4.1"
