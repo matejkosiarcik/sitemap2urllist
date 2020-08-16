@@ -28,13 +28,13 @@ script:
   - make build
   - make test
 
-deploy:
-  - provider: npm
-    run_script: publish
-    edge: true
-    skip_cleanup: true
-    email: matej.kosiarcik@gmail.com
-    access: public
-    api_key: "${NPM_TOKEN}"
-    on:
-      tags: true
+# deploy:
+#   - provider: npm
+#     run_script: publish
+#     edge: true
+#     skip_cleanup: true
+#     email: matej.kosiarcik@gmail.com
+#     access: public
+#     api_key: "${NPM_TOKEN}"
+#     on:
+#       tags: true
