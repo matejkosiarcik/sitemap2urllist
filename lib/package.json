@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "sitemap2urllist",
+  "name": "@matejkosiarcik/sitemap2urllist",
   "version": "0.0.0",
   "main": "build/main.js",
   "types": "build/main.d.ts",

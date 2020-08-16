@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "sitemap2urllist-cli",
+  "name": "@matejkosiarcik/sitemap2urllist-cli",
   "version": "0.0.0",
   "bin": {
     "sitemap2urllist": "./build/main.js"
@@ -15,10 +15,10 @@
     "@types/yargs": "^15.0.5",
     "bats": "^1.1.0",
     "cross-env": "^7.0.2",
-    "typescript": "^3.9.7",
-    "sitemap2urllist": "0.0.0"
+    "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@matejkosiarcik/sitemap2urllist": "0.0.0",
     "yargs": "^15.4.1"
   }
 }
