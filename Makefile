@@ -23,4 +23,4 @@ lint:
 build:
 	npm run --prefix lib build
 	npm run --prefix cli build
-	npm run --prefix web build
+	# npm run --prefix web build
