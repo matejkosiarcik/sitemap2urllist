@@ -7,6 +7,8 @@
 - [Installation](#installation)
 - [CLI usage](#cli-usage)
 - [Library usage](#library-usage)
+- [Limitations](#limitations)
+- [Similar projects](#similar-projects)
 
 <!-- tocstop -->
 
