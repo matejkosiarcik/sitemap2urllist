@@ -1,0 +1,4 @@
+root = false
+
+[void.xml.txt]
+insert_final_newline = false

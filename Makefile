@@ -23,4 +23,10 @@ lint:
 build:
 	npm run --prefix lib build
 	npm run --prefix cli build
-	npm run --prefix web build
+	# npm run --prefix web build
+
+.PHONY: test
+test:
+	npm run --prefix lib test
+	npm run --prefix cli test
+	# npm run --prefix web test
