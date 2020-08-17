@@ -2,6 +2,26 @@
   "name": "sitemap2urllist",
   "version": "0.1.1",
   "license": "MIT",
+  "description": "Simple sitemap.xml to urllist.txt converter (library)",
+  "homepage": "https://github.com/matejkosiarcik/sitemap2urllist#readme",
+  "keywords": [
+    "sitemap",
+    "urllist",
+    "converter",
+    "SEO"
+  ],
+  "bugs": {
+    "url": "https://github.com/matejkosiarcik/sitemap2urllist/issues"
+  },
+  "author": {
+    "name": "Matej Košiarčik",
+    "email": "matej.kosiarcik@gmail.com",
+    "url": "https://matejkosiarcik.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matejkosiarcik/sitemap2urllist.git"
+  },
   "main": "build/main.js",
   "types": "build/main.d.ts",
   "publishConfig": {
