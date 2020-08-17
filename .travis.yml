@@ -38,3 +38,7 @@ script:
 #     api_key: "${NPM_TOKEN}"
 #     on:
 #       tags: true
+
+after_deploy:
+  - npm install --prefix deploy-test
+  - npm test --prefix deploy-test
