@@ -23,5 +23,9 @@ npm install --save-dev sitemap2urllist-cli
 
 ```sh
 $ sitemap2urllist --help
-# TODO: help
+Options:
+  --help, -h     Show usage                                            [boolean]
+  --version, -V  Show current version                                  [boolean]
+  --file, -f     Input file path              [string] [required] [default: "-"]
+  --output, -o   Output file path             [string] [required] [default: "-"]
 ```
