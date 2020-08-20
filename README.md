@@ -4,6 +4,11 @@
 
 <!-- toc -->
 
+- [Installation](#installation)
+- [Usage](#usage)
+- [Limitations](#limitations)
+- [Similar projects](#similar-projects)
+
 <!-- tocstop -->
 
 ## Installation
