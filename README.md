@@ -53,9 +53,10 @@ Currently does not support sitemap references
 (xpath: `/sitemapindex/sitemap/loc`).
 If you would like to see this feature, please open an issue.
 
-## Similar projects
-
-I could not find anything available to run locally (from terminal).
+## Alternatives
 
 - Website converter
   [robhammond.co/tools/xml-extract](https://robhammond.co/tools/xml-extract)
+  (does not have export functionality)
+
+I could not find anything available to run locally (cli/app).
