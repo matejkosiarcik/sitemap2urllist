@@ -49,7 +49,7 @@
     "typescript": "^4.0.2"
   },
   "dependencies": {
-    "sitemap2urllist": "0.1.2",
+    "sitemap2urllist": "0.1.3",
     "yargs": "^15.4.1"
   }
 }
