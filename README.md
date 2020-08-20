@@ -11,6 +11,26 @@
 
 <!-- tocstop -->
 
+## What & Why
+
+What is `sitemap.xml`?
+[sitemaps.org](https://www.sitemaps.org/protocol.html) describes it well.
+It is a `xml` file that lists your subpages along with metadata.
+It is used mainly for SEO.
+
+What is `urllist.txt`?
+It's basically a plain text sitemap, 1 line for 1 url (so no extra metadata,
+unlike proper sitemap).
+It was used by *Yahoo!* search engine back in the days.
+Now it is not used by anyone remarkable.
+
+So why bother?
+I have found it is great for easily testing your website (and all subpages).
+Example (using [webhint](https://github.com/webhintio/hint#readme)):
+`curl https://example.com/urllist.txt | xargs -n1 hint`.
+Another example (using [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme)):
+`curl https://example.com/urllist.txt | xargs -n1 blc`.
+
 ## Installation
 
 ```sh
