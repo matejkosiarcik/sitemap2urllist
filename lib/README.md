@@ -8,6 +8,9 @@
 
 <!-- toc -->
 
+- [Installation](#installation)
+- [Usage](#usage)
+
 <!-- tocstop -->
 
 ## Installation
