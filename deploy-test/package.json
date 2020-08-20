@@ -4,6 +4,6 @@
     "test": "sitemap2urllist --help"
   },
   "dependencies": {
-    "sitemap2urllist-cli": "0.1.2"
+    "sitemap2urllist-cli": "*"
   }
 }
