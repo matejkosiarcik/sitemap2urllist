@@ -1,2 +1,3 @@
 #!/usr/bin/env node
-require('./cli.js')
+const path = require('path')
+require(path.join(__dirname, 'cli.js'))
