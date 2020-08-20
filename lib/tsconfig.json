@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
     "outDir": "build",
-    "target": "es5",
+    "target": "es6",
     "lib": [
-      "esnext",
-      "dom"
+      "esnext"
     ],
     "moduleResolution": "node",
     "strict": true,
