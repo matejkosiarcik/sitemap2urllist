@@ -8,7 +8,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Limitations](#limitations)
-- [Similar projects](#similar-projects)
+- [Alternatives](#alternatives)
 
 <!-- tocstop -->
 
@@ -44,8 +44,8 @@ npm install --save-dev sitemap2urllist-cli # to use as cli
 
 This project publishes packages for usage as:
 
-- [library](./lib/README.md)
-- [CLI](./cli/README.md)
+- [library](./lib/README.md) (click to learn additional info)
+- [CLI](./cli/README.md) (click to learn additional info)
 
 ## Limitations
 
@@ -53,9 +53,10 @@ Currently does not support sitemap references
 (xpath: `/sitemapindex/sitemap/loc`).
 If you would like to see this feature, please open an issue.
 
-## Similar projects
-
-I could not find anything available to run locally (from terminal).
+## Alternatives
 
 - Website converter
   [robhammond.co/tools/xml-extract](https://robhammond.co/tools/xml-extract)
+  (does not have export functionality)
+
+I could not find anything available to run locally (cli/app).
