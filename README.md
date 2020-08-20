@@ -35,4 +35,3 @@ I could not find anything available to run locally (from terminal).
 
 - Website converter
   [robhammond.co/tools/xml-extract](https://robhammond.co/tools/xml-extract)
-  (only website)
