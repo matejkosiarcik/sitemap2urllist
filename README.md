@@ -49,7 +49,9 @@ This project publishes packages for usage as:
 
 ## Limitations
 
-Does not support sitemap references (xpath: `/sitemapindex/sitemap/loc`).
+Currently does not support sitemap references
+(xpath: `/sitemapindex/sitemap/loc`).
+If you would like to see this feature, please open an issue.
 
 ## Similar projects
 
