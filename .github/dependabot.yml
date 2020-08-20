@@ -36,15 +36,3 @@ updates:
       - matejkosiarcik
     assignees:
       - matejkosiarcik
-
-  - package-ecosystem: npm
-    directory: "/deploy-test/"
-    versioning-strategy: increase
-    schedule:
-      interval: daily
-      time: "02:00"
-      timezone: "Europe/Bratislava"
-    reviewers:
-      - matejkosiarcik
-    assignees:
-      - matejkosiarcik
