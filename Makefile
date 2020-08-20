@@ -28,3 +28,8 @@ build:
 test:
 	npm run --prefix lib test
 	npm run --prefix cli test
+
+.PHONY: increment_version
+increment_version:
+	npm --no-git-tag-version version --prefix lib patch
+	npm --no-git-tag-version version --prefix cli patch
