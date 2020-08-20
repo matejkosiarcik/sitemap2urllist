@@ -4,6 +4,7 @@
 
 <!-- toc -->
 
+- [What & Why](#what--why)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Limitations](#limitations)
