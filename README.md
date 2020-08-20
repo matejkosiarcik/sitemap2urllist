@@ -8,7 +8,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Limitations](#limitations)
-- [Similar projects](#similar-projects)
+- [Alternatives](#alternatives)
 
 <!-- tocstop -->
 
