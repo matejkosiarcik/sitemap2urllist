@@ -44,8 +44,8 @@ npm install --save-dev sitemap2urllist-cli # to use as cli
 
 This project publishes packages for usage as:
 
-- [library](./lib/README.md)
-- [CLI](./cli/README.md)
+- [library](./lib/README.md) (click to learn additional info)
+- [CLI](./cli/README.md) (click to learn additional info)
 
 ## Limitations
 
