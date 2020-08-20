@@ -4,45 +4,21 @@
 
 <!-- toc -->
 
-- [Installation](#installation)
-- [CLI usage](#cli-usage)
-- [Library usage](#library-usage)
-- [Limitations](#limitations)
-- [Similar projects](#similar-projects)
-
 <!-- tocstop -->
 
 ## Installation
 
 ```sh
-npm install @matejkosiarcik/sitemap2urllist # to use as library
-npm install --save-dev @matejkosiarcik/sitemap2urllist-cli # to use as cli
+npm install --save sitemap2urllist # to use as library
+npm install --save-dev sitemap2urllist-cli # to use as cli
 ```
 
-## CLI usage
+## Usage
 
-```sh
-$ sitemap2urllist --help
-# TODO: help
-```
+Check out individual usage for:
 
-## Library usage
-
-JavaScript:
-
-```js
-const sitemap2urllist = require('@matejkosiarcik/sitemap2urllist').sitemap2urllist
-const sitemapXmlContent: string = ...
-const urllistTxtContent: string = sitemap2urllist(sitemapXmlContent)
-```
-
-TypeScript (types included):
-
-```ts
-import { sitemap2urllist } from '@matejkosiarcik/sitemap2urllist'
-const sitemapXmlContent: string = ...
-const urllistTxtContent: string = sitemap2urllist(sitemapXmlContent)
-```
+- [library](./lib/README.md)
+- [CLI](./cli/README.md)
 
 ## Limitations
 
@@ -52,7 +28,6 @@ Does not support sitemap references (xpath: `/sitemapindex/sitemap/loc`).
 
 I could not find anything available to run locally (from terminal).
 
-Kinda similar tools:
-
-[robhammond.co/tools/xml-extract](https://robhammond.co/tools/xml-extract)
-(only website)
+- Website converter
+  [robhammond.co/tools/xml-extract](https://robhammond.co/tools/xml-extract)
+  (only website)
