@@ -35,7 +35,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "tsc --noEmit",
-    "test": "cross-env COMMAND=\"npx --quiet ts-node src/main.ts\" bats --recursive tests"
+    "test": "cross-env COMMAND=\"node build/main.js\" bats --recursive tests"
   },
   "devDependencies": {
     "@types/node": "^14.0.26",
