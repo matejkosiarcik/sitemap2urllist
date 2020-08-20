@@ -27,9 +27,10 @@ Now it is not used by anyone remarkable.
 
 So why bother?
 I have found it is great for easily testing your website (and all subpages).
-Example (using [webhint](https://github.com/webhintio/hint#readme)):
+
+- Example (using [webhint](https://github.com/webhintio/hint#readme)):
 `curl https://example.com/urllist.txt | xargs -n1 hint`.
-Another example (using [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme)):
+- Another example (using [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme)):
 `curl https://example.com/urllist.txt | xargs -n1 blc`.
 
 ## Installation
