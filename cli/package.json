@@ -41,7 +41,7 @@
     "test": "cross-env COMMAND=\"node build/main.js\" bats --recursive tests"
   },
   "devDependencies": {
-    "@types/node": "^14.10.3",
+    "@types/node": "^14.11.1",
     "@types/yargs": "^15.0.5",
     "bats": "^1.1.0",
     "cross-env": "^7.0.2",
