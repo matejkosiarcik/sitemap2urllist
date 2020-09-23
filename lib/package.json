@@ -38,7 +38,7 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
