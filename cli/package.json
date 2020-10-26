@@ -23,7 +23,7 @@
     "url": "https://github.com/matejkosiarcik/sitemap2urllist.git"
   },
   "bin": {
-    "sitemap2urllist": "./build/main.js"
+    "sitemap2urllist": "build/main.js"
   },
   "publishConfig": {
     "access": "public"
@@ -45,7 +45,7 @@
     "yargs": "^16.1.0"
   },
   "devDependencies": {
-    "@types/node": "^14.11.10",
+    "@types/node": "^14.14.3",
     "@types/yargs": "^15.0.9",
     "bats": "^1.2.1",
     "cross-env": "^7.0.2",
