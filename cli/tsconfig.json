@@ -15,6 +15,7 @@
     "noUnusedParameters": true
   },
   "include": [
-    "./src/*"
+    "./src/*",
+    "main.js"
   ]
 }

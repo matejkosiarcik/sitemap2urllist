@@ -3,4 +3,6 @@
 // So we make this plain JavaScript file instead, and call the TypeScript one
 
 const path = require('path')
-require(path.join(__dirname, 'cli.js'))
+const fs = require('fs')
+const path = fs.existsSync('build') ? path.join(__dirname, 'build', 'cli.js') : path.join(__dirname, 'cli.js')
+require(path)

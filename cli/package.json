@@ -23,22 +23,20 @@
     "url": "https://github.com/matejkosiarcik/sitemap2urllist.git"
   },
   "bin": {
-    "sitemap2urllist": "build/main.js"
+    "sitemap2urllist": "main.js"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
     "package.json",
-    "build/main.js",
-    "build/cli.js"
+    "build/cli.js",
+    "main.js"
   ],
   "scripts": {
-    "build": "run-s build:ts build:js",
-    "build:ts": "tsc",
-    "build:js": "cp src/main.js build/main.js",
+    "build": "tsc",
     "lint": "tsc --noEmit",
-    "test": "cross-env COMMAND=\"node build/main.js\" bats --recursive tests"
+    "test": "cross-env COMMAND=\"node main.js\" bats --recursive tests"
   },
   "dependencies": {
     "sitemap2urllist": "0.1.3",

@@ -4,6 +4,10 @@
     "lib",
     "cli"
   ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish from-package --yes"
+  },
   "devDependencies": {
     "lerna": "^3.22.1",
     "yarn": "^1.22.10"
