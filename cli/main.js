@@ -4,5 +4,5 @@
 
 const path = require('path')
 const fs = require('fs')
-const path = fs.existsSync('build') ? path.join(__dirname, 'build', 'cli.js') : path.join(__dirname, 'cli.js')
-require(path)
+const clipath = fs.existsSync(path.join(__dirname, 'build')) ? path.join(__dirname, 'build', 'cli.js') : path.join(__dirname, 'cli.js')
+require(clipath)
