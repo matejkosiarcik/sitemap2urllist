@@ -3,7 +3,7 @@
 
 function setup() {
     cd "${BATS_TEST_DIRNAME}/.." || exit 1 # project root
-    if [ -z "${COMMAND}" ]; then exit 1; fi
+    if [ -z "${COMMAND+x}" ]; then exit 1; fi
     tmpdir="$(mktemp -d)"
     export tmpdir
 }
