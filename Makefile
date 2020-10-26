@@ -14,6 +14,7 @@ all: bootstrap lint build
 .PHONY: bootstrap
 bootstrap:
 	npm install
+	npm run bootstrap
 
 .PHONY: lint
 lint:

@@ -5,7 +5,7 @@
     "cli"
   ],
   "scripts": {
-    "postinstall": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
     "publish": "lerna publish from-package --yes"
   },
   "devDependencies": {
