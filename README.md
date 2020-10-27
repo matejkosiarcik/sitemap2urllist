@@ -9,6 +9,7 @@
 - [Usage](#usage)
 - [Limitations](#limitations)
 - [Alternatives](#alternatives)
+- [Examples](#examples)
 
 <!-- tocstop -->
 
