@@ -1,11 +1,12 @@
 {
   "private": true,
+  "name": "sitemap2urllist",
   "workspaces": [
     "lib",
     "cli"
   ],
   "scripts": {
-    "postinstall": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap",
     "publish": "lerna publish from-package --yes"
   },
   "devDependencies": {

@@ -3,7 +3,6 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as yargs from 'yargs'
 import { sitemap2urllist } from 'sitemap2urllist'
-import { assert } from 'console'
 
 // parse arguments
 const argv = yargs
@@ -15,7 +14,7 @@ const argv = yargs
     .option('output', { alias: 'o', describe: 'Output file path', type: 'string', default: '-', required: true })
     .parse()
 if (argv.version) {
-    console.log('sitemap2urlllist v0.0.0')
+    console.log('sitemap2urlllist v0.0.0') // TODO: read current version
     process.exit()
 }
 
@@ -24,7 +23,7 @@ let inputXml: string
 if (argv.file === '-') {
     inputXml = fs.readFileSync(process.stdin.fd, 'utf-8')
 } else {
-    assert(fs.existsSync(argv.file), 'Input file does not exist')
+    console.assert(fs.existsSync(argv.file), 'Input file does not exist')
     inputXml = fs.readFileSync(argv.file, 'utf-8')
 }
 
@@ -41,6 +40,6 @@ try {
 if (argv.output === '-') {
     fs.writeFileSync(process.stdout.fd, outputList)
 } else {
-    assert(fs.existsSync(path.dirname(argv.file)), 'Output file directory does not exist')
+    console.assert(fs.existsSync(path.dirname(argv.file)), 'Output file directory does not exist')
     fs.writeFileSync(argv.output, outputList)
 }

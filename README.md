@@ -60,3 +60,12 @@ If you would like to see this feature, please open an issue.
   (does not have export functionality)
 
 I could not find anything available to run locally (cli/app).
+
+## Examples
+
+I am successfully using this package on my website
+[matejkosiarcik.com](https://matejkosiarcik.com)
+\([repo](https://github.com/matejkosiarcik/web) for more info\).
+
+- [sitemap.xml](https://matejkosiarcik.com/sitemap.xml)
+- [urllist.txt](https://matejkosiarcik.com/urllist.txt)
