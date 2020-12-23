@@ -23,5 +23,6 @@ install:
   - make bootstrap
 
 script:
+  - node --version
+  - npm --version
   - make build
-  - make test

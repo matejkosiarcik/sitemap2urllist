@@ -13,7 +13,7 @@ all: bootstrap build
 
 .PHONY: bootstrap
 bootstrap:
-	npm install
+	npm ci
 	npm run bootstrap
 
 .PHONY: lint
