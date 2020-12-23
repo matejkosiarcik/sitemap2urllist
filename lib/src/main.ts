@@ -16,7 +16,7 @@ function getSitemapContent(data: string | Buffer | URL, options: Options | null)
     if (Buffer.isBuffer(data)) {
         xml = data.toString(options?.encoding ?? 'utf-8')
     } else if (typeof data === 'string') {
-        xml = data
+        xml = data.trim()
     } else if (data instanceof URL) {
         // if (data.protocol === 'file:') {
         //     // TODO: read file
