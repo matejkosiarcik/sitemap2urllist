@@ -13,8 +13,16 @@ const argv = yargs
     .option('file', { alias: 'f', describe: 'Input file path', type: 'string', default: '-', required: true })
     .option('output', { alias: 'o', describe: 'Output file path', type: 'string', default: '-', required: true })
     .parse()
+
+// print current version
 if (argv.version) {
-    console.log('sitemap2urlllist v0.0.0') // TODO: read current version
+    let scriptdir = __dirname
+    if (path.basename(scriptdir) == 'build') {
+        // if we are inside build directory (mainly during development), we want to go 1 level higher
+        scriptdir = path.dirname(scriptdir)
+    }
+    const version = require(path.join(scriptdir, 'package.json')).version
+    console.log(`sitemap2urlllist v${version}`)
     process.exit()
 }
 
