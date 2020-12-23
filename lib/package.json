@@ -1,6 +1,6 @@
 {
   "name": "sitemap2urllist",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "license": "MIT",
   "description": "Simple sitemap.xml to urllist.txt converter (library)",
   "homepage": "https://github.com/matejkosiarcik/sitemap2urllist#readme",
