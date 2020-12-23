@@ -10,7 +10,6 @@ addons:
 matrix:
   fast_finish: true
   include:
-    - { os: linux }
     - { os: osx, osx_image: xcode11.6, if: branch == master AND type != push }
 
 install:
@@ -24,21 +23,5 @@ install:
   - make bootstrap
 
 script:
-  - make lint
   - make build
   - make test
-
-# deploy:
-#   - provider: npm
-#     run_script: publish
-#     edge: true
-#     skip_cleanup: true
-#     email: matej.kosiarcik@gmail.com
-#     access: public
-#     api_key: "${NPM_TOKEN}"
-#     on:
-#       tags: true
-
-after_deploy:
-  - npm install --prefix deploy-test
-  - npm test --prefix deploy-test
