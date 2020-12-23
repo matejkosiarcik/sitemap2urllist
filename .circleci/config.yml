@@ -5,6 +5,8 @@ workflows:
   circleci-build:
     jobs:
       - azlint
+      - lint
+      - build: { matrix: { parameters: { node_version: [ latest, lts, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ] }}}
 
 jobs:
   azlint:
@@ -14,3 +16,27 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: azlint
+
+  lint:
+    docker:
+      - image: node:lts
+    steps:
+      - checkout
+      - run: node --version
+      - run: npm --version
+      - run: make bootstrap
+      - run: make lint
+
+  build:
+    parameters:
+      node_version:
+        type: string
+    docker:
+      - image: "node:<< parameters.node_version >>"
+    steps:
+      - checkout
+      - run: node --version
+      - run: npm --version
+      - run: make bootstrap
+      - run: make build
+      - run: make test
