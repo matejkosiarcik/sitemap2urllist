@@ -1,6 +1,6 @@
 {
   "name": "sitemap2urllist-cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "description": "Simple sitemap.xml to urllist.txt converter (cli)",
   "homepage": "https://github.com/matejkosiarcik/sitemap2urllist#readme",
@@ -39,7 +39,7 @@
     "test": "cross-env COMMAND=\"node main.js\" bats --recursive tests"
   },
   "dependencies": {
-    "sitemap2urllist": "0.1.4",
+    "sitemap2urllist": "0.1.5",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
