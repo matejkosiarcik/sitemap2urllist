@@ -6,7 +6,7 @@ workflows:
     jobs:
       - azlint
       - lint
-      - build: { matrix: { parameters: { node_version: [ latest, lts, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ] }}}
+      - build: { matrix: { parameters: { node_version: [ latest, lts, '6', '7', '8', '9', '10', '11', '12', '13', '14', '15' ] }}}
 
 jobs:
   azlint:
