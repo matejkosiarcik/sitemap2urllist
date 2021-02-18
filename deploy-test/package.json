@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "scripts": {
-    "test": "sitemap2urllist --help"
-  },
-  "dependencies": {
-    "sitemap2urllist-cli": "*"
-  }
-}
