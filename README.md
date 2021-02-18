@@ -17,21 +17,21 @@
 
 What is `sitemap.xml`?
 [sitemaps.org](https://www.sitemaps.org/protocol.html) describes it well.
-It is a `xml` file that lists your subpages along with metadata.
+It is a `xml` file that lists your subpages along with some metadata.
 It is used mainly for SEO.
+You probably already know it.
 
 What is `urllist.txt`?
-It's basically a plain text sitemap, 1 line for 1 url (so no extra metadata,
-unlike proper sitemap).
+It's basically a plain text sitemap, 1 line for 1 url (no other metadata).
 It was used by *Yahoo!* search engine back in the days.
-Now it is not used by anyone remarkable.
+Now it is not used by anyone noteworthy AFAIK.
 
 So why bother?
-I have found it is great for easily testing your website (and all subpages).
+I have found it is great for easy high-level testing of your website, like:
 
-- Example (using [webhint](https://github.com/webhintio/hint#readme)):
+- Example with [webhint](https://github.com/webhintio/hint#readme):
   `curl https://example.com/urllist.txt | xargs -n1 hint`
-- Example (using [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme)):
+- Example with [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme):
   `curl https://example.com/urllist.txt | xargs -n1 blc`
 
 ## Installation
@@ -60,13 +60,13 @@ If you would like to see this feature, please open an issue.
   [robhammond.co/tools/xml-extract](https://robhammond.co/tools/xml-extract)
   (does not have export functionality)
 
-I could not find anything available to run locally (cli/app).
+I could not find anything available to run locally (in a form of cli/app).
 
 ## Examples
 
 I am successfully using this package on my website
 [matejkosiarcik.com](https://matejkosiarcik.com)
-\([repo](https://github.com/matejkosiarcik/web) for more info\).
+\([repository](https://github.com/matejkosiarcik/web) for more info\).
 
 - [sitemap.xml](https://matejkosiarcik.com/sitemap.xml)
 - [urllist.txt](https://matejkosiarcik.com/urllist.txt)
