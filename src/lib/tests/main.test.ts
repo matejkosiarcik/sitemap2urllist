@@ -2,7 +2,7 @@ import { sitemap2urllist } from '../src/main'
 import * as path from 'path'
 import * as fs from 'fs'
 
-const projectPath = path.join(__dirname, '..', '..')
+const projectPath = path.join(__dirname, '..', '..', '..')
 
 describe('Test good inputs', () => {
     test.each([

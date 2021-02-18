@@ -13,8 +13,8 @@ all: bootstrap build
 
 .PHONY: bootstrap
 bootstrap:
-	npm ci
-	npm run bootstrap
+	npm --prefix src ci
+	npm --prefix src run bootstrap
 
 .PHONY: lint
 lint:
@@ -22,15 +22,15 @@ lint:
 
 .PHONY: build
 build:
-	npm run --prefix lib build
-	npm run --prefix cli build
+	npm --prefix src/lib run build
+	npm --prefix src/cli run build
 
 .PHONY: test
 test:
-	npm run --prefix lib test
-	npm run --prefix cli test
+	npm --prefix src/lib run test
+	npm --prefix src/cli run test
 
 .PHONY: increment_version
 increment_version:
-	npm --no-git-tag-version version --prefix lib patch
-	npm --no-git-tag-version version --prefix cli patch
+	npm --no-git-tag-version --prefix src/lib version patch
+	npm --no-git-tag-version --prefix src/cli version patch
