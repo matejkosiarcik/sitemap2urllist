@@ -14,7 +14,7 @@ updates:
       - matejkosiarcik
 
   - package-ecosystem: npm
-    directory: "/lib/"
+    directory: "/src/lib/"
     versioning-strategy: increase
     schedule:
       interval: daily
@@ -26,7 +26,19 @@ updates:
       - matejkosiarcik
 
   - package-ecosystem: npm
-    directory: "/cli/"
+    directory: "/src/cli/"
+    versioning-strategy: increase
+    schedule:
+      interval: daily
+      time: "02:00"
+      timezone: "Europe/Bratislava"
+    reviewers:
+      - matejkosiarcik
+    assignees:
+      - matejkosiarcik
+
+  - package-ecosystem: npm
+    directory: "/tests-cli/"
     versioning-strategy: increase
     schedule:
       interval: daily
