@@ -2,7 +2,7 @@
 # shellcheck disable=SC2086
 
 function setup() {
-    cd "${BATS_TEST_DIRNAME}/.." || exit 1 # project root
+    cd "${BATS_TEST_DIRNAME}/../.." || exit 1 # project root
     if [ -z "${COMMAND+x}" ]; then exit 1; fi
     tmpdir="$(mktemp -d)"
     export tmpdir
@@ -15,8 +15,8 @@ function teardown() {
 # test helper to run a test agains given file and check output
 function test() {
     # given
-    reference_input="../../sitemaps/good/${1}-in.xml"
-    reference_output="../../sitemaps/good/${1}-out.txt"
+    reference_input="sitemaps/good/${1}-in.xml"
+    reference_output="sitemaps/good/${1}-out.txt"
 
     # when
     run ${COMMAND} -f "${reference_input}" -o "${tmpdir}/out.txt"

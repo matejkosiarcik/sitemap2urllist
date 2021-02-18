@@ -2,7 +2,7 @@
 # shellcheck disable=SC2086
 
 function setup() {
-    cd "${BATS_TEST_DIRNAME}/.." || exit 1 # project root
+    cd "${BATS_TEST_DIRNAME}/../.." || exit 1 # project root
     if [ -z "${COMMAND+x}" ]; then exit 1; fi
     tmpdir="$(mktemp -d)"
     export tmpdir
@@ -14,7 +14,7 @@ function teardown() {
 
 function test() {
     # when
-    run ${COMMAND} -f "../../sitemaps/bad/${1}.xml.txt" -o "${tmpdir}/out.txt"
+    run ${COMMAND} -f "sitemaps/bad/${1}.xml" -o "${tmpdir}/out.txt"
 
     # then
     [ ! -e "${tmpdir}/out.txt" ]

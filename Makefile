@@ -15,6 +15,7 @@ all: bootstrap build
 bootstrap:
 	npm --prefix src ci
 	npm --prefix src run bootstrap
+	npm --prefix tests-cli ci
 
 .PHONY: lint
 lint:
@@ -27,8 +28,8 @@ build:
 
 .PHONY: test
 test:
-	npm --prefix src/lib run test
-	npm --prefix src/cli run test
+	npm --prefix src/lib test
+	npm --prefix tests-cli test
 
 .PHONY: increment_version
 increment_version:
