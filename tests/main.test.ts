@@ -47,10 +47,10 @@ describe('Test good inputs', () => {
 describe('Test bad inputs', () => {
     test.each([
         'void',
-        'void-almost',
+        'void-with-preamble',
     ])('String sitemaps/%s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml`)).toString()
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`)).toString()
 
         // when
         let result: any = null
@@ -68,10 +68,10 @@ describe('Test bad inputs', () => {
 
     test.each([
         'void',
-        'void-almost',
+        'void-with-preamble',
     ])('Buffer %s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml`))
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`))
 
         // when
         let result: any = null

@@ -14,7 +14,7 @@ function teardown() {
 
 function test() {
     # when
-    run ${COMMAND} -f "sitemaps/bad/${1}.xml" -o "${tmpdir}/out.txt"
+    run ${COMMAND} -f "sitemaps/bad/${1}.txt" -o "${tmpdir}/out.txt"
 
     # then
     [ ! -e "${tmpdir}/out.txt" ]
@@ -26,6 +26,6 @@ function test() {
     test void
 }
 
-@test 'Test void-almost' {
-    test void-almost
+@test 'Test void-with-preamble' {
+    test void-with-preamble
 }
