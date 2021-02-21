@@ -1,8 +1,8 @@
-import { sitemap2urllist } from '../src/main'
+import { sitemap2urllist } from '../src/lib/lib'
 import * as path from 'path'
 import * as fs from 'fs'
 
-const projectPath = path.join(__dirname, '..', '..')
+const projectPath = path.join(__dirname, '..')
 
 describe('Test good inputs', () => {
     test.each([
@@ -47,10 +47,10 @@ describe('Test good inputs', () => {
 describe('Test bad inputs', () => {
     test.each([
         'void',
-        'void-almost',
+        'void-with-preamble',
     ])('String sitemaps/%s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml.txt`)).toString()
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`)).toString()
 
         // when
         let result: any = null
@@ -68,10 +68,10 @@ describe('Test bad inputs', () => {
 
     test.each([
         'void',
-        'void-almost',
+        'void-with-preamble',
     ])('Buffer %s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.xml.txt`))
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`))
 
         // when
         let result: any = null

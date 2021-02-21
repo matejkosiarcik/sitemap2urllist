@@ -14,23 +14,17 @@ all: bootstrap build
 .PHONY: bootstrap
 bootstrap:
 	npm ci
-	npm run bootstrap
+	npm --prefix tests-cli ci
 
 .PHONY: lint
 lint:
-	true
+	npm run lint
 
 .PHONY: build
 build:
-	npm run --prefix lib build
-	npm run --prefix cli build
+	npm run build
 
 .PHONY: test
 test:
-	npm run --prefix lib test
-	npm run --prefix cli test
-
-.PHONY: increment_version
-increment_version:
-	npm --no-git-tag-version version --prefix lib patch
-	npm --no-git-tag-version version --prefix cli patch
+	npm test
+	npm --prefix tests-cli test
