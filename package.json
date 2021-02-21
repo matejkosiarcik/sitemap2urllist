@@ -2,11 +2,13 @@
   "name": "sitemap2urllist",
   "version": "0.1.6",
   "license": "MIT",
-  "description": "Simple sitemap.xml to urllist.txt converter (library)",
+  "description": "Simple sitemap.xml to urllist.txt converter (library and cli)",
   "homepage": "https://github.com/matejkosiarcik/sitemap2urllist#readme",
   "keywords": [
     "sitemap",
+    "sitemap.xml",
     "urllist",
+    "urllist.txt",
     "converter",
     "SEO"
   ],
@@ -16,33 +18,39 @@
   "author": {
     "name": "Matej Košiarčik",
     "email": "matej.kosiarcik@gmail.com",
-    "url": "https://matejkosiarcik.com/"
+    "url": "https://matejkosiarcik.com"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/matejkosiarcik/sitemap2urllist.git"
   },
-  "main": "build/main.js",
-  "types": "build/main.d.ts",
+  "main": "dist/lib/lib.js",
+  "types": "types/lib/lib.d.ts",
+  "bin": {
+    "sitemap2urllist": "bin/main.js"
+  },
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "package.json",
-    "build/main.js",
-    "build/main.d.ts"
+    "bin/",
+    "dist/",
+    "types/lib/"
   ],
   "scripts": {
-    "build": "tsc --declaration",
+    "build": "tsc",
     "lint": "tsc --noEmit",
     "test": "jest --runInBand"
   },
   "dependencies": {
     "isomorphic-fetch": "^3.0.0",
-    "xml-js": "^1.6.11"
+    "xml-js": "^1.6.11",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.31",
+    "@types/yargs": "^16.0.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.5"

@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "test": "cross-env COMMAND=\"node src/cli/main.js\" bats --recursive tests"
+    "test": "cross-env COMMAND=\"node src/cli/cli.js\" bats --recursive tests"
   },
   "devDependencies": {
     "bats": "^1.2.1",

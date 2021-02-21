@@ -1,20 +1,23 @@
 {
   "compilerOptions": {
-    "outDir": "build",
+    "outDir": "dist",
     "target": "es5",
     "lib": [
       "esnext"
     ],
     "moduleResolution": "node",
     "strict": true,
+    "allowJs": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "declaration": true,
+    "declarationDir": "types"
   },
   "include": [
-    "./src/*"
+    "src"
   ]
 }

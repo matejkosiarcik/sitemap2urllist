@@ -2,7 +2,7 @@ import * as process from 'process'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as yargs from 'yargs'
-import { sitemap2urllist } from 'sitemap2urllist'
+import { sitemap2urllist } from '../lib/lib'
 
 // parse arguments
 const argv = yargs
@@ -16,19 +16,17 @@ const argv = yargs
 
 // print current version
 if (argv.version) {
-    let scriptdir = __dirname
-    if (path.basename(scriptdir) == 'build') {
-        // if we are inside build directory (mainly during development), we want to go 1 level higher
-        scriptdir = path.dirname(scriptdir)
-    }
-    const version = require(path.join(scriptdir, 'package.json')).version
+    let rootDirectory = path.dirname(path.dirname(path.dirname(__filename)))
+    const version = require(path.join(rootDirectory, 'package.json')).version
     console.log(`sitemap2urlllist v${version}`)
-    process.exit()
+    process.exit(0)
 }
 
 // read input
 let inputXml: string
 if (argv.file === '-') {
+    // TODO: move stdin reading to library
+    // TODO: pass ReadStream to library
     inputXml = fs.readFileSync(process.stdin.fd, 'utf-8')
 } else {
     console.assert(fs.existsSync(argv.file), 'Input file does not exist')
@@ -36,9 +34,9 @@ if (argv.file === '-') {
 }
 
 // get the output
-let outputList: string
+let output: string
 try {
-    outputList = sitemap2urllist(inputXml)
+    output = sitemap2urllist(inputXml)
 } catch (error) {
     console.log(error)
     process.exit(2)
@@ -46,8 +44,10 @@ try {
 
 // write output
 if (argv.output === '-') {
-    fs.writeFileSync(process.stdout.fd, outputList)
+    // TODO: move stdout writing to library
+    // TODO: pass WriteStream to library
+    fs.writeFileSync(process.stdout.fd, output)
 } else {
     console.assert(fs.existsSync(path.dirname(argv.file)), 'Output file directory does not exist')
-    fs.writeFileSync(argv.output, outputList)
+    fs.writeFileSync(argv.output, output)
 }
