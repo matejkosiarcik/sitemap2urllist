@@ -12,30 +12,9 @@ updates:
       - matejkosiarcik
     assignees:
       - matejkosiarcik
-
-  - package-ecosystem: npm
-    directory: "/src/lib/"
-    versioning-strategy: increase
-    schedule:
-      interval: daily
-      time: "01:30"
-      timezone: "Europe/Bratislava"
-    reviewers:
-      - matejkosiarcik
-    assignees:
-      - matejkosiarcik
-
-  - package-ecosystem: npm
-    directory: "/src/cli/"
-    versioning-strategy: increase
-    schedule:
-      interval: daily
-      time: "02:00"
-      timezone: "Europe/Bratislava"
-    reviewers:
-      - matejkosiarcik
-    assignees:
-      - matejkosiarcik
+    open-pull-requests-limit: 1
+    labels:
+      - automerge
 
   - package-ecosystem: npm
     directory: "/tests-cli/"
@@ -48,3 +27,6 @@ updates:
       - matejkosiarcik
     assignees:
       - matejkosiarcik
+    open-pull-requests-limit: 1
+    labels:
+      - automerge
