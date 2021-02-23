@@ -9,21 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2021-02-23
 
-### Changed
-
-- Merged previously separate library and cli packages into a single root package `sitemap2urllist`
+- Changed
+  - Merged previously separate library and cli packages into a single root package `sitemap2urllist`
 
 ## [0.1.6] - 2020-12-23
 
-### Fixed
-
-- Print correct package version from CLI
+- Fixed
+  - Print correct package version from CLI
 
 ## [0.1.5] - 2020-12-23
 
-### Changed
-
-- Update dependencies
+- Changed
+  - Update dependencies
 
 ## [0.1.4] - 2020-08-20
 
@@ -35,18 +32,14 @@ Duplicate of v0.1.2
 
 ## [0.1.2] - 2020-08-20
 
-### Fixed
-
-- Add missing shebang to CLI script
+- Fixed
+  - Add missing shebang to CLI script
 
 ## [0.1.1] - 2020-08-20
 
-### Changed
-
-- Released package on [npmjs.org](https://npmjs.org)
+- Changed
+  - Released package on [npmjs.org](https://npmjs.org)
 
 ## [0.1.0] - 2020-08-17
 
-### Added
-
-- Initial release
+Initial release
