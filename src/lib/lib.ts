@@ -10,7 +10,7 @@ export class Options {
     }
 }
 
-function getSitemapContent(data: string | Buffer | URL, options: Options | null): string {
+async function getSitemapContent(data: string | Buffer | URL, options: Options | null): Promise<string> {
     // TODO: accept URL?
     let xml: string;
 
@@ -101,8 +101,8 @@ function convertEntriesToUrls(entries: SitemapEntry[]): string[] {
     return entries.sort(sorter).flatMap(entry => [entry.url].concat(entry.altUrls));
 }
 
-export function sitemap2urllist(data: string | Buffer, options: Options | null = null): string {
-    const xml = getSitemapContent(data, options);
+export async function sitemap2urllist(data: string | Buffer, options: Options | null = null): Promise<string> {
+    const xml = await getSitemapContent(data, options);
     const entries = parseSitemapToEntries(xml);
     const urls = convertEntriesToUrls(entries);
     // TODO: benchmark on huge sitemaps (depending on results consider streams or promises)

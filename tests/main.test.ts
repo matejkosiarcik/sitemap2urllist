@@ -18,7 +18,7 @@ describe('Test good inputs', () => {
         const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString();
 
         // when
-        const result = sitemap2urllist(input);
+        const result = await sitemap2urllist(input);
 
         // then
         expect(result).toBe(output);
@@ -37,7 +37,7 @@ describe('Test good inputs', () => {
         const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString();
 
         // when
-        const result = sitemap2urllist(input);
+        const result = await sitemap2urllist(input);
 
         // then
         expect(result).toBe(output);
@@ -56,7 +56,7 @@ describe('Test bad inputs', () => {
         let result: any = null;
         let error: any = null;
         try {
-            result = sitemap2urllist(input);
+            result = await sitemap2urllist(input);
         } catch (err) {
             error = err;
         }
@@ -77,7 +77,7 @@ describe('Test bad inputs', () => {
         let result: any = null;
         let error: any = null;
         try {
-            result = sitemap2urllist(input);
+            result = await sitemap2urllist(input);
         } catch (err) {
             error = err;
         }
