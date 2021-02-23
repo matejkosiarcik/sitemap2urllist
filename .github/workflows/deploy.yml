@@ -1,4 +1,6 @@
-on:
+name: Build and Publish
+
+on:  # yamllint disable-line rule:truthy
   release:  # only on releases
     types:
       - published
