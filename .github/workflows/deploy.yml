@@ -1,0 +1,21 @@
+on:
+  release:  # only on releases
+    types:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.0
+
+      - uses: actions/setup-node@v2.1.0
+        with:
+          node-version: 14
+
+      - run: npm ci
+
+      - uses: JS-DevTools/npm-publish@v1.4.0
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          check-version: true
