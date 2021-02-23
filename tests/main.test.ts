@@ -1,8 +1,8 @@
-import { sitemap2urllist } from '../src/lib/lib'
-import * as path from 'path'
-import * as fs from 'fs'
+import { sitemap2urllist } from '../src/lib/lib';
+import * as path from 'path';
+import * as fs from 'fs';
 
-const projectPath = path.join(__dirname, '..')
+const projectPath = path.join(__dirname, '..');
 
 describe('Test good inputs', () => {
     test.each([
@@ -14,14 +14,14 @@ describe('Test good inputs', () => {
         'order-priority',
     ])('String sitemaps/%s-in.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`)).toString()
-        const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString()
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`)).toString();
+        const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString();
 
         // when
-        const result = sitemap2urllist(input)
+        const result = await sitemap2urllist(input);
 
         // then
-        expect(result).toBe(output)
+        expect(result).toBe(output);
     })
 
     test.each([
@@ -33,14 +33,14 @@ describe('Test good inputs', () => {
         'order-priority',
     ])('Buffer %s-in.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`))
-        const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString()
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`));
+        const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString();
 
         // when
-        const result = sitemap2urllist(input)
+        const result = await sitemap2urllist(input);
 
         // then
-        expect(result).toBe(output)
+        expect(result).toBe(output);
     })
 })
 
@@ -50,20 +50,20 @@ describe('Test bad inputs', () => {
         'void-with-preamble',
     ])('String sitemaps/%s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`)).toString()
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`)).toString();
 
         // when
-        let result: any = null
-        let error: any = null
+        let result: any = null;
+        let error: any = null;
         try {
-            result = sitemap2urllist(input)
+            result = await sitemap2urllist(input);
         } catch (err) {
-            error = err
+            error = err;
         }
 
         // then
-        expect(result).toBeFalsy()
-        expect(error).toBeTruthy()
+        expect(result).toBeFalsy();
+        expect(error).toBeTruthy();
     })
 
     test.each([
@@ -71,19 +71,19 @@ describe('Test bad inputs', () => {
         'void-with-preamble',
     ])('Buffer %s.xml', async (name) => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`))
+        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`));
 
         // when
-        let result: any = null
-        let error: any = null
+        let result: any = null;
+        let error: any = null;
         try {
-            result = sitemap2urllist(input)
+            result = await sitemap2urllist(input);
         } catch (err) {
-            error = err
+            error = err;
         }
 
         // then
-        expect(result).toBeFalsy()
-        expect(error).toBeTruthy()
+        expect(result).toBeFalsy();
+        expect(error).toBeTruthy();
     })
 })
