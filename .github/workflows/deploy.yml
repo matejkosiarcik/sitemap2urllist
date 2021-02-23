@@ -18,8 +18,10 @@ jobs:
       - name: Build 🔧
         run: npm ci
 
-      - name: Publish s🚀
+      - name: Publish to npmjs.org 🚀
         uses: JS-DevTools/npm-publish@v1.4.3
+        if: github.repository == 'matejkosiarcik/sitemap2urllist'
         with:
           token: ${{ secrets.NPM_TOKEN }}
           check-version: true
+          access: public
