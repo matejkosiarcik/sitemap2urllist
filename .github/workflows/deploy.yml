@@ -16,7 +16,7 @@ jobs:
           node-version: 14
 
       - name: Build 🔧
-        run: npm ci
+        run: make bootstrap build
 
       - name: Publish to npmjs.org 🚀
         uses: JS-DevTools/npm-publish@v1.4.3
