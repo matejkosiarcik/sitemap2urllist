@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.0] - 2021-02-23
+## [0.2.0] - 2021-02-24
 
 - Changed
   - Merged previously separate library and cli packages into a single root package `sitemap2urllist`
+
+- Miscellaneous
+  - Setup automatic publishing from github repository to npmjs.org
 
 ## [0.1.6] - 2020-12-23
 
