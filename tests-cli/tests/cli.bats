@@ -6,19 +6,7 @@ function setup() {
     if [ -z "${COMMAND+x}" ]; then exit 1; fi
 }
 
-@test 'Get help (short)' {
-    # when
-    run ${COMMAND} -h
-
-    # then
-    [ "${status}" -eq 0 ]
-    printf '%s\n' "${output}" | grep -- '--help'
-    printf '%s\n' "${output}" | grep -- '--version'
-    printf '%s\n' "${output}" | grep -- '--file'
-    printf '%s\n' "${output}" | grep -- '--output'
-}
-
-@test 'Get help (long)' {
+@test 'Get --help' {
     # when
     run ${COMMAND} --help
 
@@ -30,18 +18,17 @@ function setup() {
     printf '%s\n' "${output}" | grep -- '--output'
 }
 
-@test 'Get version (short)' {
+@test 'Verify --help and -h equals' {
     # when
-    run ${COMMAND} -V
+    run ${COMMAND} -h
+    short="${output}"
+    run ${COMMAND} --help
+    long="${output}"
 
-    # then
-    [ "${status}" -eq 0 ]
-    printf '%s\n' "${output}" | grep 'sitemap2urlllist'
-    printf '%s\n' "${output}" | grep -v '0.0.0'
-    printf '%s\n' "${output}" | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+'
+    [ "${short}" = "${long}" ]
 }
 
-@test 'Get version (long)' {
+@test 'Get --version' {
     # when
     run ${COMMAND} --version
 
@@ -50,4 +37,18 @@ function setup() {
     printf '%s\n' "${output}" | grep 'sitemap2urlllist'
     printf '%s\n' "${output}" | grep -v '0.0.0'
     printf '%s\n' "${output}" | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+'
+
+    cli_version="$(printf '%s\n' "${output}" | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sed -E 's~[a-zA-Z]~~g')"
+    package_version="$(jq .version 'package.json' | sed -E 's~"~~g')"
+    [ "${cli_version}" = "${package_version}" ]
+}
+
+@test 'Verify --version and -V equals' {
+    # when
+    run ${COMMAND} -V
+    short="${output}"
+    run ${COMMAND} --version
+    long="${output}"
+
+    [ "${short}" = "${long}" ]
 }
