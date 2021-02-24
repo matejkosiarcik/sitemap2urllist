@@ -1,8 +1,9 @@
-import * as process from 'process'
-import * as fs from 'fs'
-import * as path from 'path'
-import * as yargs from 'yargs'
-import { sitemap2urllist } from '../lib/lib'
+import * as process from 'process';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as yargs from 'yargs';
+import { sitemap2urllist } from '../lib/lib';
+import { URL, pathToFileURL } from 'url';
 
 // parse arguments
 const argv = yargs
@@ -24,20 +25,18 @@ if (argv.version) {
 
 (async () => {
     // read input
-    let inputXml: string;
+    let input: string | URL;
     if (argv.file === '-') {
-        // TODO: move stdin reading to library
-        // TODO: pass ReadStream to library
-        inputXml = fs.readFileSync(process.stdin.fd, 'utf-8');
+        input = fs.readFileSync(process.stdin.fd, 'utf-8');
     } else {
         console.assert(fs.existsSync(argv.file), 'Input file does not exist');
-        inputXml = fs.readFileSync(argv.file, 'utf-8');
+        input = pathToFileURL(argv.file);
     }
 
     // get the output
     let output: string;
     try {
-        output = await sitemap2urllist(inputXml);
+        output = await sitemap2urllist(input);
     } catch (error) {
         console.log(error);
         process.exit(2);
@@ -45,8 +44,6 @@ if (argv.version) {
 
     // write output
     if (argv.output === '-') {
-        // TODO: move stdout writing to library
-        // TODO: pass WriteStream to library
         fs.writeFileSync(process.stdout.fd, output);
     } else {
         console.assert(fs.existsSync(path.dirname(argv.file)), 'Output file directory does not exist');
