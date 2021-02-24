@@ -7,6 +7,8 @@
 - [What & Why](#what--why)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [CLI](#cli)
+  - [Library](#library)
 - [Limitations](#limitations)
 - [Alternatives](#alternatives)
 - [Examples](#examples)
