@@ -8,4 +8,5 @@ build:
   ci:
     - node --version
     - npm --version
+    - apt-get install -y jq
     - make
