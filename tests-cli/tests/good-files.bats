@@ -25,6 +25,7 @@ function test() {
     [ "${status}" -eq 0 ]
     [ "${output}" = '' ]
     git diff --no-index "${reference_output}" "${tmpdir}/out.txt"
+    # TODO: replace git command with something else
 }
 
 @test 'Test zero' {
