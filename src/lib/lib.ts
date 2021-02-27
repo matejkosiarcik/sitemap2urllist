@@ -1,6 +1,6 @@
 import { xml2json } from 'xml-js';
 import { URL } from 'url';
-import 'isomorphic-fetch';
+import * as fsp from 'fs/promises';
 
 export class Options {
     readonly encoding: BufferEncoding | null;
@@ -10,27 +10,26 @@ export class Options {
     }
 }
 
-async function getSitemapContent(data: string | Buffer | URL, options: Options | null): Promise<string> {
-    // TODO: accept URL?
-    let xml: string;
+async function fetchContent(location: URL, encoding: BufferEncoding): Promise<string> {
+    if (location.protocol === 'file:') {
+        return await fsp.readFile(location.pathname, encoding);
+    } // else if (data.protocol === 'https:' || data.protocol === 'http:') {
+    //     // TODO: fetch url
+    //     // await fetch(data.href)
+    // }
+    throw new Error(`Unsupported URL protocol "${location.protocol}" (${location})`);
+}
 
+async function readInput(data: string | Buffer | URL, options: Options | null): Promise<string> {
     if (Buffer.isBuffer(data)) {
-        xml = data.toString(options?.encoding ?? 'utf-8');
+        return data.toString(options?.encoding ?? 'utf-8');
     } else if (typeof data === 'string') {
-        xml = data.trim();
+        return data;
     } else if (data instanceof URL) {
-        // if (data.protocol === 'file:') {
-        //     // TODO: read file
-        //     // data.pathname
-        // } else if (data.protocol === 'https:' || data.protocol === 'http:') {
-        //     // TODO: fetch url
-        //     // await fetch(data.href)
-        // }
-        throw new Error(`URLs not yet supported`);
-    } else {
-        throw new Error(`Unknown input "${data}" of type ${typeof data}`);
+        return await fetchContent(data, options?.encoding ?? 'utf-8');
     }
-    return xml;
+
+    throw new Error(`Unknown input "${data}" of type ${typeof data}`);
 }
 
 class SitemapEntry {
@@ -129,8 +128,8 @@ function convertEntriesToUrls(entries: SitemapEntry[]): string[] {
         .filter(el => el); // remove empty urls
 }
 
-export async function sitemap2urllist(data: string | Buffer, options: Options | null = null): Promise<string> {
-    const xml = await getSitemapContent(data, options);
+export async function sitemap2urllist(data: string | Buffer | URL, options: Options | null = null): Promise<string> {
+    const xml = await readInput(data, options);
     const entries = await parseSitemap(xml);
     const urls = convertEntriesToUrls(entries);
     return urls.join('\n') + (urls.length > 0 ? '\n' : '');

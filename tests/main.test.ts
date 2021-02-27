@@ -1,89 +1,50 @@
 import { sitemap2urllist } from '../src/lib/lib';
 import * as path from 'path';
 import * as fs from 'fs';
+// import { URL } from 'url';
+import * as url from 'url';
 
 const projectPath = path.join(__dirname, '..');
 
-describe('Test good inputs', () => {
-    test.each([
-        'zero',
-        'single',
-        'multiple',
-        'alternate',
-        'order-alphanum',
-        'order-priority',
-    ])('String sitemaps/%s-in.xml', async (name) => {
+describe('Basic tests', () => {
+    const inputFilePath = path.join(projectPath, 'sitemaps', 'good', 'single-in.xml');
+    const outputFilePath = path.join(projectPath, 'sitemaps', 'good', 'single-out.txt');
+    const referenceOutput = fs.readFileSync(outputFilePath, 'utf-8');
+
+    test('Raw content as String', async () => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`)).toString();
-        const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString();
+        const input: string = fs.readFileSync(inputFilePath, 'utf-8');
 
         // when
-        const result = await sitemap2urllist(input);
+        const testedOutput = await sitemap2urllist(input);
 
         // then
-        expect(result).toBe(output);
-    })
+        expect(testedOutput).toBe(referenceOutput);
+    });
 
-    test.each([
-        'zero',
-        'single',
-        'multiple',
-        'alternate',
-        'order-alphanum',
-        'order-priority',
-    ])('Buffer %s-in.xml', async (name) => {
+    test('Raw content as Buffer', async () => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-in.xml`));
-        const output = fs.readFileSync(path.join(projectPath, 'sitemaps', 'good', `${name}-out.txt`)).toString();
+        const input: Buffer = fs.readFileSync(inputFilePath);
 
         // when
-        const result = await sitemap2urllist(input);
+        const testedOutput = await sitemap2urllist(input);
 
         // then
-        expect(result).toBe(output);
-    })
-})
+        expect(testedOutput).toBe(referenceOutput);
+    });
 
-describe('Test bad inputs', () => {
-    test.each([
-        'void',
-        'void-with-preamble',
-    ])('String sitemaps/%s.xml', async (name) => {
+    test('Filepath as URL', async () => {
         // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`)).toString();
+        const inputUrl = url.pathToFileURL(inputFilePath);
 
         // when
-        let result: any = null;
-        let error: any = null;
-        try {
-            result = await sitemap2urllist(input);
-        } catch (err) {
-            error = err;
-        }
+        const testedOutput = await sitemap2urllist(inputUrl);
 
         // then
-        expect(result).toBeFalsy();
-        expect(error).toBeTruthy();
-    })
+        expect(inputUrl.protocol).toBe('file:');
+        expect(testedOutput).toBe(referenceOutput);
+    });
 
-    test.each([
-        'void',
-        'void-with-preamble',
-    ])('Buffer %s.xml', async (name) => {
-        // given
-        const input = fs.readFileSync(path.join(projectPath, 'sitemaps', 'bad', `${name}.txt`));
-
-        // when
-        let result: any = null;
-        let error: any = null;
-        try {
-            result = await sitemap2urllist(input);
-        } catch (err) {
-            error = err;
-        }
-
-        // then
-        expect(result).toBeFalsy();
-        expect(error).toBeTruthy();
-    })
-})
+    // TODO: Test HTTP URL
+    // TODO: Test HTTPS URL
+});

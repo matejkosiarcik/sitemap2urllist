@@ -5,7 +5,7 @@ workflows:
   circleci-build:
     jobs:
       - azlint
-      - build: { matrix: { parameters: { node_version: [ latest, lts ] }}}
+      - build: { matrix: { parameters: { node_version: [ latest, lts, current-alpine, lts-alpine ] }}}
 
 jobs:
   azlint:
@@ -26,7 +26,5 @@ jobs:
       - checkout
       - run: node --version
       - run: npm --version
-      - run: make bootstrap
-      - run: make lint
-      - run: make build
-      - run: make test
+      - run: (apt-get update && apt-get install -y jq) || apk add jq make bash git  # TODO: remove git
+      - run: make bootstrap build test

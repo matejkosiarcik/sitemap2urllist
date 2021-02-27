@@ -7,6 +7,8 @@
 - [What & Why](#what--why)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [CLI](#cli)
+  - [Library](#library)
 - [Limitations](#limitations)
 - [Alternatives](#alternatives)
 - [Examples](#examples)
@@ -37,16 +39,39 @@ I have found it is great for easy high-level testing of your website, like:
 ## Installation
 
 ```sh
-npm install --save sitemap2urllist # to use as library
-npm install --save-dev sitemap2urllist-cli # to use as cli
+npm install --save-dev sitemap2urllist
 ```
 
 ## Usage
 
-This project publishes packages for usage as:
+### CLI
 
-- [library](./lib/README.md) (click to learn additional info)
-- [CLI](./cli/README.md) (click to learn additional info)
+```sh
+$ sitemap2urllist --help
+Options:
+  --help, -h     Show usage                                            [boolean]
+  --version, -V  Show current version                                  [boolean]
+  --file, -f     Input file path              [string] [required] [default: "-"]
+  --output, -o   Output file path             [string] [required] [default: "-"]
+```
+
+### Library
+
+JavaScript:
+
+```js
+const sitemap2urllist = require('sitemap2urllist').sitemap2urllist;
+const urllist = sitemap2urllist(...);
+fs.writeFileSync('./sitemap.txt', urllist);
+```
+
+TypeScript (types are included):
+
+```ts
+import { sitemap2urllist } from 'sitemap2urllist';
+const urllist: string = sitemap2urllist(...);
+fs.writeFileSync('./sitemap.txt', urllist);
+```
 
 ## Limitations
 
