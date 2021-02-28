@@ -9,9 +9,10 @@
 - [Usage](#usage)
   - [CLI](#cli)
   - [Library](#library)
-- [Limitations](#limitations)
 - [Alternatives](#alternatives)
 - [Examples](#examples)
+- [License](#license)
+- [Changes](#changes)
 
 <!-- tocstop -->
 
