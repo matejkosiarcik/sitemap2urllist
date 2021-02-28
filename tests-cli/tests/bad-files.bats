@@ -12,7 +12,7 @@ function teardown() {
     rm -rf "${tmpdir}"
 }
 
-function test() {
+function test_run() {
     # when
     run ${COMMAND} -f "sitemaps/bad/${1}.txt" -o "${tmpdir}/out.txt"
 
@@ -23,9 +23,9 @@ function test() {
 }
 
 @test 'Test void' {
-    test void
+    test_run void
 }
 
 @test 'Test void-with-preamble' {
-    test void-with-preamble
+    test_run void-with-preamble
 }
