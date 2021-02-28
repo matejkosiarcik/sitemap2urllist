@@ -44,8 +44,8 @@
   },
   "dependencies": {
     "isomorphic-fetch": "^3.0.0",
-    "xml-js": "^1.6.11",
-    "yargs": "^16.2.0"
+    "xml-js": "^1.6.0",
+    "yargs": "^16.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
