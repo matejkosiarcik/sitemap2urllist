@@ -26,5 +26,5 @@ jobs:
       - checkout
       - run: node --version
       - run: npm --version
-      - run: (apt-get update && apt-get install -y jq) || apk add jq make bash git  # TODO: remove git
+      - run: (apt-get update && apt-get install -y jq) || apk add jq make bash
       - run: make bootstrap build test
