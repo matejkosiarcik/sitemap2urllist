@@ -18,7 +18,7 @@ updates:
 
   - package-ecosystem: npm
     directory: "/"
-    versioning-strategy: increase
+    versioning-strategy: increase-if-necessary
     schedule:
       interval: daily
       time: "01:30"

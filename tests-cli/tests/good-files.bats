@@ -13,7 +13,7 @@ function teardown() {
 }
 
 # test helper to run a test agains given file and check output
-function test() {
+function test_run() {
     # given
     reference_input="sitemaps/good/${1}-in.xml"
     reference_output="sitemaps/good/${1}-out.txt"
@@ -24,30 +24,29 @@ function test() {
     # then
     [ "${status}" -eq 0 ]
     [ "${output}" = '' ]
-    git diff --no-index "${reference_output}" "${tmpdir}/out.txt"
-    # TODO: replace git command with something else
+    cmp -s "${reference_output}" "${tmpdir}/out.txt"
 }
 
 @test 'Test zero' {
-    test zero
+    test_run zero
 }
 
 @test 'Test single' {
-    test single
+    test_run single
 }
 
 @test 'Test multiple' {
-    test multiple
+    test_run multiple
 }
 
 @test 'Test alternate' {
-    test alternate
+    test_run alternate
 }
 
 @test 'Test order-alphanum' {
-    test order-alphanum
+    test_run order-alphanum
 }
 
 @test 'Test order-priority' {
-    test order-priority
+    test_run order-priority
 }
