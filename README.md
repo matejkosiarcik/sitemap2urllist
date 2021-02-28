@@ -73,12 +73,6 @@ const urllist: string = sitemap2urllist(...);
 fs.writeFileSync('./sitemap.txt', urllist);
 ```
 
-## Limitations
-
-Currently does not support sitemap references
-(xpath: `/sitemapindex/sitemap/loc`).
-If you would like to see this feature, please open an issue.
-
 ## Alternatives
 
 - Website converter
@@ -89,14 +83,15 @@ I could not find anything available to run locally (in a form of cli/app).
 
 ## Examples
 
-I am successfully using this package on my website
-[matejkosiarcik.com](https://matejkosiarcik.com)
+I am successfully using this package on my website at [matejkosiarcik.com](https://matejkosiarcik.com)
+to generate [urllist.txt](https://matejkosiarcik.com/urllist.txt) from [sitemap.xml](https://matejkosiarcik.com/sitemap.xml)
 \([repository](https://github.com/matejkosiarcik/web) for more info\).
-
-- [sitemap.xml](https://matejkosiarcik.com/sitemap.xml)
-- [urllist.txt](https://matejkosiarcik.com/urllist.txt)
 
 ## License
 
 The project is licensed under MIT License.
-See [LICENSE.txt](./LICENSE.txt) for full details.
+See [LICENSE](./LICENSE.txt) for full details.
+
+## Changes
+
+Changes in released versions are recorded in [CHANGELOG](./CHANGELOG.md).
