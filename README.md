@@ -95,3 +95,8 @@ I am successfully using this package on my website
 
 - [sitemap.xml](https://matejkosiarcik.com/sitemap.xml)
 - [urllist.txt](https://matejkosiarcik.com/urllist.txt)
+
+## License
+
+The project is licensed under MIT License.
+See [LICENSE.txt](./LICENSE.txt) for full details.
