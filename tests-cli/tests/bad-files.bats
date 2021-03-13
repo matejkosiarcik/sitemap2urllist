@@ -14,7 +14,7 @@ function teardown() {
 
 function test_run() {
     # when
-    run ${COMMAND} -f "sitemaps/bad/${1}.txt" -o "${tmpdir}/out.txt"
+    run ${COMMAND} -f "${tmpdir}/in.xml" -o "${tmpdir}/out.txt"
 
     # then
     [ ! -e "${tmpdir}/out.txt" ]
@@ -22,10 +22,17 @@ function test_run() {
     [ "${output}" != '' ]
 }
 
-@test 'Test void' {
-    test_run void
+@test 'Test empty' {
+    printf '' >"${tmpdir}/in.xml"
+    test_run
 }
 
-@test 'Test void-with-preamble' {
-    test_run void-with-preamble
+@test 'Test empty with preamble' {
+    printf '' >"${tmpdir}/in.xml"
+    test_run
+}
+
+@test 'Test invalid' {
+    printf '<foo>bar</foo>' >"${tmpdir}/in.xml"
+    test_run
 }

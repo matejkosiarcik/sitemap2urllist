@@ -50,3 +50,7 @@ function test_run() {
 @test 'Test order-priority' {
     test_run order-priority
 }
+
+@test 'Test without preamble' {
+    test_run without-preamble
+}

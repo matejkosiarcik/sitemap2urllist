@@ -45,6 +45,15 @@ describe('Basic tests', () => {
         expect(testedOutput).toBe(referenceOutput);
     });
 
+    test('Fail with invalid file', async () => {
+        try {
+            await sitemap2urllist('');
+            fail();
+        } catch (error) {
+            // success
+        }
+    });
+
     // TODO: Test HTTP URL
     // TODO: Test HTTPS URL
 });
