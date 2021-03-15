@@ -23,14 +23,19 @@ if (argv.version) {
     process.exit(0);
 }
 
+// main work
 (async () => {
     // read input
     let input: string | URL;
     if (argv.file === '-') {
         input = fs.readFileSync(process.stdin.fd, 'utf-8');
     } else {
-        console.assert(fs.existsSync(argv.file), 'Input file does not exist');
-        input = pathToFileURL(argv.file);
+        if (argv.file.startsWith('https://') || argv.file.startsWith('http://') || argv.file.startsWith('file://')) {
+            input = new URL(argv.file);
+        } else {
+            console.assert(fs.existsSync(argv.file), `Input file ${argv.file} does not exist`);
+            input = pathToFileURL(argv.file);
+        }
     }
 
     // get the output
@@ -46,7 +51,7 @@ if (argv.version) {
     if (argv.output === '-') {
         fs.writeFileSync(process.stdout.fd, output);
     } else {
-        console.assert(fs.existsSync(path.dirname(argv.file)), 'Output file directory does not exist');
+        console.assert(fs.existsSync(path.dirname(argv.output)), `Output file directory ${path.dirname(argv.output)}   does not exist`);
         fs.writeFileSync(argv.output, output);
     }
 })();

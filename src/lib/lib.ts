@@ -1,6 +1,7 @@
 import { xml2json } from 'xml-js';
 import { URL } from 'url';
 import * as fsp from 'fs/promises';
+import fetch from 'node-fetch';
 
 export class Options {
     readonly encoding: BufferEncoding | null;
@@ -10,23 +11,34 @@ export class Options {
     }
 }
 
-async function fetchContent(location: URL, encoding: BufferEncoding): Promise<string> {
+/**
+ * reads content from URL
+ * supported protocols: file, http(s)
+ */
+async function readUrl(location: URL, encoding: BufferEncoding): Promise<string> {
     if (location.protocol === 'file:') {
         return await fsp.readFile(location.pathname, encoding);
-    } // else if (data.protocol === 'https:' || data.protocol === 'http:') {
-    //     // TODO: fetch url
-    //     // await fetch(data.href)
-    // }
+    } else if (location.protocol == 'http:' || location.protocol == 'https:') {
+        const response = await fetch(location.href);
+        if (!response.ok) {
+            throw new Error(`Error response, got status: ${response.status} for ${location.href}`);
+        }
+        const contentSubTypes = (response.headers.get('content-type') ?? '').split(';').map(el => el.trim());
+        if (!contentSubTypes.includes('text/xml') && !contentSubTypes.includes('application/xml')) {
+            throw new Error(`Unsupported Content-Type, got: ${response.headers.get('content-type')}. Expected text/xml or application/xml`);
+        }
+        return await response.text();
+    }
     throw new Error(`Unsupported URL protocol "${location.protocol}" (${location})`);
 }
 
-async function readInput(data: string | Buffer | URL, options: Options | null): Promise<string> {
+async function readInput(data: string | Buffer | URL, options: Options): Promise<string> {
     if (Buffer.isBuffer(data)) {
-        return data.toString(options?.encoding ?? 'utf-8');
+        return data.toString(options.encoding ?? 'utf-8');
     } else if (typeof data === 'string') {
         return data;
     } else if (data instanceof URL) {
-        return await fetchContent(data, options?.encoding ?? 'utf-8');
+        return await readUrl(data, options.encoding ?? 'utf-8');
     }
 
     throw new Error(`Unknown input "${data}" of type ${typeof data}`);
@@ -44,71 +56,68 @@ class SitemapEntry {
     }
 }
 
-function parseSingleEntry(entry: any): SitemapEntry {
-    const locationURL: string = (() => {
-        try {
-            return entry['loc']['_text'];
-        } catch (_) {
-            return '';
-        }
-    })();
-
-    const priority: number = (() => {
-        try {
-            const textPriority = entry['priority']['_text'];
-            return parseFloat(textPriority);
-        } catch (_) {
-            return 0.5;
-        }
-    })();
-
-    const alternativeURLs: string[] = [entry['xhtml:link']]
-        .flatMap(el => el) // flatten potential 2D array
-        .filter(el => {
-            try {
-                return el['_attributes']['href'];
-            } catch (_) {
-                return false;
-            }
-        })
-        .map(el => el['_attributes']['href'])
-        .filter(el => el) // remove empty urls
-        .sort();
-
-    return new SitemapEntry(locationURL, alternativeURLs, priority);
-}
-
 /**
  * Parses root <urlset>
  */
-function parseUrlSet(json: any): SitemapEntry[] {
+function parseUrlset(json: any): SitemapEntry[] {
     const urls = json['urlset']['url'];
     let output: SitemapEntry[] = [];
 
+    /**
+     * convert raw xml to object for single url entry
+     */
+    function parseSingleUrl(entry: any): SitemapEntry {
+        const locationURL: string = (() => {
+            try {
+                return entry['loc']['_text'];
+            } catch (_) {
+                return '';
+            }
+        })();
+
+        const priority: number = (() => {
+            try {
+                const textPriority = entry['priority']['_text'];
+                return parseFloat(textPriority);
+            } catch (_) {
+                return 0.5;
+            }
+        })();
+
+        const alternativeURLs: string[] = [entry['xhtml:link']]
+            .flatMap(el => el) // flatten potential 2D array
+            .filter(el => {
+                try {
+                    return el['_attributes']['href'];
+                } catch (_) {
+                    return false;
+                }
+            })
+            .map(el => el['_attributes']['href'])
+            .filter(el => el) // remove empty urls
+            .sort();
+
+        return new SitemapEntry(locationURL, alternativeURLs, priority);
+    }
+
     if (Array.isArray(urls)) {
-        output = urls.map(url => parseSingleEntry(url));
+        output = urls.map(url => parseSingleUrl(url));
     } else if (urls) {
-        output.push(parseSingleEntry(urls));
+        output.push(parseSingleUrl(urls));
     }
     return output;
 }
 
 /**
- * Parses root <sitemapindex>
- */
-async function parseSitemapIndex(json: any): Promise<SitemapEntry[]> {
-    throw new Error(`<sitemapindex> not supported yet. ${json}`);
-}
-
-/**
  * parse full sitemap.xml
  */
-async function parseSitemap(xml: string): Promise<SitemapEntry[]> {
+async function parseSitemapContent(input: string | Buffer | URL, options: Options): Promise<SitemapEntry[]> {
+    const xml = await readInput(input, options);
     const json = JSON.parse(xml2json(xml, { compact: true, spaces: 0 }));
     if (json['urlset']) {
-        return parseUrlSet(json);
+        return parseUrlset(json);
     } else if (json['sitemapindex']) {
-        return await parseSitemapIndex(json);
+        throw new Error(`Not supported <sitemapindex> xml. Only accepting <urlset>.`);
     } else {
         throw new Error(`Invalid xml. Expected top level "urlset" or "sitemapindex". Found: ${xml}`);
     }
@@ -129,8 +138,10 @@ function convertEntriesToUrls(entries: SitemapEntry[]): string[] {
 }
 
 export async function sitemap2urllist(data: string | Buffer | URL, options: Options | null = null): Promise<string> {
-    const xml = await readInput(data, options);
-    const entries = await parseSitemap(xml);
+    const realOptions = options ?? {
+        encoding: 'utf-8',
+    };
+    const entries = await parseSitemapContent(data, realOptions);
     const urls = convertEntriesToUrls(entries);
     return urls.join('\n') + (urls.length > 0 ? '\n' : '');
 }
