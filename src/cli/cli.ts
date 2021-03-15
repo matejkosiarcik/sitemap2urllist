@@ -11,8 +11,8 @@ const argv = yargs
     .option('help', { alias: 'h', describe: 'Show usage', type: 'boolean' })
     .version(false)
     .option('version', { alias: 'V', describe: 'Show current version', type: 'boolean' })
-    .option('file', { alias: 'f', describe: 'Input file path', type: 'string', default: '-', required: true })
-    .option('output', { alias: 'o', describe: 'Output file path', type: 'string', default: '-', required: true })
+    .option('file', { alias: 'f', describe: 'Input file path (- for stdin) or http(s) address', type: 'string', default: '-', required: true })
+    .option('output', { alias: 'o', describe: 'Output file path (- for stdout)', type: 'string', default: '-', required: true })
     .parse();
 
 // print current version
