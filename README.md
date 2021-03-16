@@ -50,10 +50,12 @@ npm install --save-dev sitemap2urllist
 ```sh
 $ sitemap2urllist --help
 Options:
-  --help, -h     Show usage                                            [boolean]
-  --version, -V  Show current version                                  [boolean]
-  --file, -f     Input file path              [string] [required] [default: "-"]
-  --output, -o   Output file path             [string] [required] [default: "-"]
+  -h, --help     Show usage                                            [boolean]
+  -V, --version  Show current version                                  [boolean]
+  -f, --file     Input file path (- for stdin) or http(s) address
+                                              [string] [required] [default: "-"]
+  -o, --output   Output file path (- for stdout)
+                                              [string] [required] [default: "-"]
 ```
 
 ### Library
@@ -62,16 +64,14 @@ JavaScript:
 
 ```js
 const sitemap2urllist = require('sitemap2urllist').sitemap2urllist;
-const urllist = sitemap2urllist(...);
-fs.writeFileSync('./sitemap.txt', urllist);
+const urllist = await sitemap2urllist(...); // accepts string | Buffer | URL
 ```
 
 TypeScript (types are included):
 
 ```ts
 import { sitemap2urllist } from 'sitemap2urllist';
-const urllist: string = sitemap2urllist(...);
-fs.writeFileSync('./sitemap.txt', urllist);
+const urllist: string = await sitemap2urllist(...); // accepts string | Buffer | URL
 ```
 
 ## Alternatives

@@ -1,4 +1,4 @@
 root = false
 
-[void.txt]
+[empty.txt]
 insert_final_newline = false

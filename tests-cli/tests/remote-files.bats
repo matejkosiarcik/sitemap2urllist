@@ -12,23 +12,20 @@ function teardown() {
     rm -rf "${tmpdir}"
 }
 
+# test helper to run a test agains given file and check output
 function test_run() {
     # given
-    reference_input="sitemaps/unsupported/${1}.txt"
+    reference_input="${1}"
 
     # when
     run ${COMMAND} -f "${reference_input}" -o "${tmpdir}/out.txt"
 
     # then
-    [ ! -e "${tmpdir}/out.txt" ]
-    [ "${status}" -ne 0 ]
-    [ "${output}" != '' ]
+    [ "${status}" -eq 0 ]
+    [ "${output}" = '' ]
+    [ "$(wc -l <"${tmpdir}/out.txt")" -ge 2 ]
 }
 
-@test 'Test file not-xml.xml' {
-    test_run 'not-xml.xml'
-}
-
-@test 'Test file not-sitemap.xml' {
-    test_run 'not-sitemap.xml'
+@test 'Test remote' {
+    test_run 'https://www.sitemaps.org/sitemap.xml'
 }

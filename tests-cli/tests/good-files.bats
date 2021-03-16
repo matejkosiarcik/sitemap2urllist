@@ -15,8 +15,8 @@ function teardown() {
 # test helper to run a test agains given file and check output
 function test_run() {
     # given
-    reference_input="sitemaps/good/${1}-in.xml"
-    reference_output="sitemaps/good/${1}-out.txt"
+    reference_input="sitemaps/${1}-in.xml"
+    reference_output="sitemaps/${1}-out.txt"
 
     # when
     run ${COMMAND} -f "${reference_input}" -o "${tmpdir}/out.txt"
@@ -27,26 +27,66 @@ function test_run() {
     cmp -s "${reference_output}" "${tmpdir}/out.txt"
 }
 
-@test 'Test zero' {
+@test 'File zero.xml' {
     test_run zero
 }
 
-@test 'Test single' {
+@test 'File single.xml' {
     test_run single
 }
 
-@test 'Test multiple' {
+@test 'File multiple.xml' {
     test_run multiple
 }
 
-@test 'Test alternate' {
+@test 'File alternate.xml' {
     test_run alternate
 }
 
-@test 'Test order-alphanum' {
+@test 'File order-alphanum.xml' {
     test_run order-alphanum
 }
 
-@test 'Test order-priority' {
+@test 'File order-priority.xml' {
     test_run order-priority
+}
+
+@test 'File without-preamble.xml' {
+    test_run without-preamble
+}
+
+@test 'Standard input' {
+    # given
+    reference_input='sitemaps/single-in.xml'
+    reference_output='sitemaps/single-out.txt'
+
+    # when
+    ${COMMAND} -o "${tmpdir}/out.txt" <"${reference_input}"
+
+    # then
+    cmp -s "${reference_output}" "${tmpdir}/out.txt"
+}
+
+@test 'Standard output' {
+    # given
+    reference_input='sitemaps/single-in.xml'
+    reference_output='sitemaps/single-out.txt'
+
+    # when
+    ${COMMAND} -f "${reference_input}" >"${tmpdir}/out.txt"
+
+    # then
+    cmp -s "${reference_output}" "${tmpdir}/out.txt"
+}
+
+@test 'Standard input/output' {
+    # given
+    reference_input='sitemaps/single-in.xml'
+    reference_output='sitemaps/single-out.txt'
+
+    # when
+    ${COMMAND} <"${reference_input}" >"${tmpdir}/out.txt"
+
+    # then
+    cmp -s "${reference_output}" "${tmpdir}/out.txt"
 }
