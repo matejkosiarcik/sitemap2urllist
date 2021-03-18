@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## \[Unreleased\]
 
+- add support for remote http(s) URLs
+- add support for file URLs
+- remove dependency on fs/promises
+
 ## \[0.2.1\] - 2021-02-28
 
 - Changed

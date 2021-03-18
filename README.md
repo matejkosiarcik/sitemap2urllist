@@ -84,9 +84,22 @@ I could not find anything available to run locally (in a form of cli/app).
 
 ## Examples
 
-I am successfully using this package on my website at [matejkosiarcik.com](https://matejkosiarcik.com)
-to generate [urllist.txt](https://matejkosiarcik.com/urllist.txt) from [sitemap.xml](https://matejkosiarcik.com/sitemap.xml)
-\([repository](https://github.com/matejkosiarcik/web) for more info\).
+```sh
+$ cat /sitemap.xml
+<urlset>
+    <url>
+        <loc>https://example.com</loc>
+    </url>
+    <url>
+        <loc>https://example.com/answer</loc>
+        <priority>0.42</priority>
+    </url>
+</urlset>
+$ sitemap2urllist -f /sitemap.xml -o /urllist.txt
+$ cat /urllist.txt
+https://example.com
+https://example.com/answer
+```
 
 ## License
 
