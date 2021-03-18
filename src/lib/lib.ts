@@ -1,6 +1,6 @@
 import { xml2json } from 'xml-js';
 import { URL } from 'url';
-import * as fsp from 'fs/promises';
+import * as fs from 'fs';
 import fetch from 'node-fetch';
 
 export class Options {
@@ -17,7 +17,7 @@ export class Options {
  */
 async function readUrl(location: URL, encoding: BufferEncoding): Promise<string> {
     if (location.protocol === 'file:') {
-        return await fsp.readFile(location.pathname, encoding);
+        return fs.readFileSync(location.pathname, encoding);
     } else if (location.protocol == 'http:' || location.protocol == 'https:') {
         const response = await fetch(location.href);
         if (!response.ok) {
