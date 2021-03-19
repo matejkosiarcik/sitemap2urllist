@@ -43,6 +43,8 @@ I have found it is great for easy high-level testing of your website, like:
 npm install --save-dev sitemap2urllist
 ```
 
+Note: package includes typescript definitions
+
 ## Usage
 
 ### CLI
@@ -67,11 +69,30 @@ const sitemap2urllist = require('sitemap2urllist').sitemap2urllist;
 const urllist = await sitemap2urllist(...); // accepts string | Buffer | URL
 ```
 
-TypeScript (types are included):
+TypeScript:
 
 ```ts
 import { sitemap2urllist } from 'sitemap2urllist';
-const urllist: string = await sitemap2urllist(...); // accepts string | Buffer | URL
+const urllist/*: string*/ = await sitemap2urllist(...); // accepts string | Buffer | URL
+```
+
+## Examples
+
+```sh
+$ cat /sitemap.xml
+<urlset>
+  <url>
+    <loc>https://example.com</loc>
+  </url>
+  <url>
+    <loc>https://example.com/answer</loc>
+    <priority>0.42</priority>
+  </url>
+</urlset>
+$ sitemap2urllist -f /sitemap.xml -o /urllist.txt
+$ cat /urllist.txt
+https://example.com
+https://example.com/answer
 ```
 
 ## Alternatives
@@ -81,25 +102,6 @@ const urllist: string = await sitemap2urllist(...); // accepts string | Buffer |
   (does not have export functionality)
 
 I could not find anything available to run locally (in a form of cli/app).
-
-## Examples
-
-```sh
-$ cat /sitemap.xml
-<urlset>
-    <url>
-        <loc>https://example.com</loc>
-    </url>
-    <url>
-        <loc>https://example.com/answer</loc>
-        <priority>0.42</priority>
-    </url>
-</urlset>
-$ sitemap2urllist -f /sitemap.xml -o /urllist.txt
-$ cat /urllist.txt
-https://example.com
-https://example.com/answer
-```
 
 ## License
 
