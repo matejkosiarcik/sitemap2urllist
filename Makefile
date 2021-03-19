@@ -28,3 +28,7 @@ build:
 test:
 	npm test
 	npm --prefix tests-cli test
+
+.PHONY: docker-build
+docker-build:
+	docker build . --tag matejkosiarcik/sitemap2urllist:dev
