@@ -27,8 +27,13 @@ build:
 .PHONY: test
 test:
 	npm test
-	npm --prefix tests-cli test
+	npm --prefix tests-cli run test-node
 
 .PHONY: docker-build
 docker-build:
 	docker build . --tag matejkosiarcik/sitemap2urllist:dev
+
+.PHONY: docker-test
+docker-test:
+	docker run matejkosiarcik/sitemap2urllist:dev --help >/dev/null
+	npm --prefix tests-cli run test-smoke-docker
