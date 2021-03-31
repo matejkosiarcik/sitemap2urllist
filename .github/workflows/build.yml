@@ -1,16 +1,16 @@
 name: Build and Test
 
-on: # yamllint disable-line rule:truthy
+on:
   push:
   pull_request:
 
 jobs:
   build:
+    name: Build and Test 🔧
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
         node: [14, 15]
-
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout 🛎️
