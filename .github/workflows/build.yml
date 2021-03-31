@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        node: [14, 15]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout 🛎️
@@ -19,7 +18,7 @@ jobs:
       - name: Setup nodeJS 🧩
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 14
 
       - name: Build 🔧
         run: make bootstrap lint build test
