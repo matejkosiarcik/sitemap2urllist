@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file, no-underscore-dangle */
 import { xml2json } from 'xml-js';
 import { URL } from 'url';
 import * as fs from 'fs';
@@ -18,7 +19,8 @@ export class Options {
 async function readUrl(location: URL, encoding: BufferEncoding): Promise<string> {
   if (location.protocol === 'file:') {
     return fs.readFileSync(location.pathname, encoding);
-  } else if (location.protocol == 'http:' || location.protocol == 'https:') {
+  }
+  if (location.protocol === 'http:' || location.protocol === 'https:') {
     const response = await fetch(location.href);
     if (!response.ok) {
       throw new Error(`Error response, got status: ${response.status} for ${location.href}`);
@@ -27,18 +29,21 @@ async function readUrl(location: URL, encoding: BufferEncoding): Promise<string>
     if (!contentSubTypes.includes('text/xml') && !contentSubTypes.includes('application/xml')) {
       throw new Error(`Unsupported Content-Type, got: ${response.headers.get('content-type')}. Expected text/xml or application/xml`);
     }
-    return await response.text();
+    return response.text();
   }
+
   throw new Error(`Unsupported URL protocol "${location.protocol}" (${location})`);
 }
 
 async function readInput(data: string | Buffer | URL, options: Options): Promise<string> {
   if (Buffer.isBuffer(data)) {
     return data.toString(options.encoding ?? 'utf-8');
-  } else if (typeof data === 'string') {
+  }
+  if (typeof data === 'string') {
     return data;
-  } else if (data instanceof URL) {
-    return await readUrl(data, options.encoding ?? 'utf-8');
+  }
+  if (data instanceof URL) {
+    return readUrl(data, options.encoding ?? 'utf-8');
   }
 
   throw new Error(`Unknown input "${data}" of type ${typeof data}`);
@@ -116,18 +121,20 @@ function parseUrlset(json: any): SitemapEntry[] {
 async function parseSitemapContent(input: string | Buffer | URL, options: Options): Promise<SitemapEntry[]> {
   const xml = await readInput(input, options);
   const json = JSON.parse(xml2json(xml, { compact: true, spaces: 0 }));
+
   if (json.urlset) {
     return parseUrlset(json);
-  } else if (json.sitemapindex) {
-    throw new Error('Not supported <sitemapindex> xml. Only accepting <urlset>.');
-  } else {
-    throw new Error(`Invalid xml. Expected top level "urlset" or "sitemapindex". Found: ${xml}`);
   }
+
+  if (json.sitemapindex) {
+    throw new Error('Not supported <sitemapindex> xml. Only accepting <urlset>.');
+  }
+  throw new Error(`Invalid xml. Expected top level "urlset" or "sitemapindex". Found: ${xml}`);
 }
 
 function convertEntriesToUrls(entries: SitemapEntry[]): string[] {
   const sorter = (left: SitemapEntry, right: SitemapEntry): number => {
-    if (right.priority != left.priority) {
+    if (right.priority !== left.priority) {
       return right.priority - left.priority;
     }
     return left.url.localeCompare(right.url);

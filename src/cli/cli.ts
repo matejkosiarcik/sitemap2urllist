@@ -22,7 +22,7 @@ const argv = yargs
 // print current version
 if (argv.version) {
   const rootDirectory = path.dirname(path.dirname(path.dirname(__filename)));
-  const { version } = require(path.join(rootDirectory, 'package.json'));
+  const { version } = require(path.join(rootDirectory, 'package.json'));  // eslint-disable-line
   console.log(`sitemap2urlllist v${version}`);
   process.exit(0);
 }
