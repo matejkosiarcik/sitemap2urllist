@@ -26,7 +26,7 @@ You probably already know it.
 
 What is `urllist.txt`?
 It's basically a plain text sitemap, 1 line for 1 url (no other metadata).
-It was used by *Yahoo!* search engine back in the days.
+It was used by _Yahoo!_ search engine back in the days.
 Now it is not used by anyone noteworthy AFAIK.
 
 So why bother?

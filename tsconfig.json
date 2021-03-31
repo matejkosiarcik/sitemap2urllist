@@ -2,9 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "es5",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "moduleResolution": "node",
     "strict": true,
     "allowJs": false,
@@ -17,7 +15,5 @@
     "declaration": true,
     "declarationDir": "types"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
