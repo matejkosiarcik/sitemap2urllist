@@ -1,6 +1,6 @@
-name: Build and Publish
+name: Build and Deploy 🚀
 
-on: # yamllint disable-line rule:truthy
+on:
   release: # only on releases
     types:
       - published
