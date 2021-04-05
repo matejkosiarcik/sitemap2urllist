@@ -24,6 +24,9 @@
     "type": "git",
     "url": "https://github.com/matejkosiarcik/sitemap2urllist.git"
   },
+  "engines": {
+    "node": ">=14"
+  },
   "main": "dist/lib/lib.js",
   "types": "types/lib/lib.d.ts",
   "bin": {
