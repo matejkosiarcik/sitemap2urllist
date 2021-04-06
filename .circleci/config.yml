@@ -21,7 +21,6 @@ jobs:
       - image: matejkosiarcik/azlint
     steps:
       - checkout
-      - setup_remote_docker
       - run: azlint
 
   lint:
