@@ -11,8 +11,8 @@
 - [Usage](#usage)
   - [CLI](#cli)
   - [Library](#library)
-- [Alternatives](#alternatives)
 - [Examples](#examples)
+- [Alternatives](#alternatives)
 - [License](#license)
 - [Changes](#changes)
 
