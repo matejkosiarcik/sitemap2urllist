@@ -2,6 +2,8 @@
 
 > Simple sitemap.xml to urllist.txt converter
 
+[![npm](https://img.shields.io/npm/v/sitemap2urllist)](https://www.npmjs.com/package/sitemap2urllist)
+
 <!-- toc -->
 
 - [What & Why](#what--why)
@@ -9,8 +11,8 @@
 - [Usage](#usage)
   - [CLI](#cli)
   - [Library](#library)
-- [Alternatives](#alternatives)
 - [Examples](#examples)
+- [Alternatives](#alternatives)
 - [License](#license)
 - [Changes](#changes)
 
