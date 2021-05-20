@@ -2,14 +2,14 @@
 # shellcheck disable=SC2086
 
 function setup() {
-    cd "${BATS_TEST_DIRNAME}/../.." || exit 1 # project root
+    cd "$BATS_TEST_DIRNAME/../.." || exit 1 # project root
     if [ -z "${COMMAND+x}" ]; then exit 1; fi
     tmpdir="$(mktemp -d)"
     export tmpdir
 }
 
 function teardown() {
-    rm -rf "${tmpdir}"
+    rm -rf "$tmpdir"
 }
 
 # test helper to run a test against given file and check output
@@ -19,12 +19,12 @@ function test_run() {
     reference_output="sitemaps/${1}-out.txt"
 
     # when
-    run ${COMMAND} -f "${reference_input}" -o "${tmpdir}/out.txt"
+    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt"
 
     # then
-    [ "${status}" -eq 0 ]
-    [ "${output}" = '' ]
-    cmp -s "${reference_output}" "${tmpdir}/out.txt"
+    [ "$status" -eq 0 ]
+    [ "$output" = '' ]
+    cmp -s "$reference_output" "$tmpdir/out.txt"
 }
 
 @test 'File zero.xml' {
@@ -61,10 +61,10 @@ function test_run() {
     reference_output='sitemaps/single-out.txt'
 
     # when
-    ${COMMAND} -o "${tmpdir}/out.txt" <"${reference_input}"
+    "$COMMAND" -o "$tmpdir/out.txt" <"$reference_input"
 
     # then
-    cmp -s "${reference_output}" "${tmpdir}/out.txt"
+    cmp -s "$reference_output" "$tmpdir/out.txt"
 }
 
 @test 'Standard output' {
@@ -73,10 +73,10 @@ function test_run() {
     reference_output='sitemaps/single-out.txt'
 
     # when
-    ${COMMAND} -f "${reference_input}" >"${tmpdir}/out.txt"
+    "$COMMAND" -f "$reference_input" >"$tmpdir/out.txt"
 
     # then
-    cmp -s "${reference_output}" "${tmpdir}/out.txt"
+    cmp -s "$reference_output" "$tmpdir/out.txt"
 }
 
 @test 'Standard input/output' {
@@ -85,8 +85,8 @@ function test_run() {
     reference_output='sitemaps/single-out.txt'
 
     # when
-    ${COMMAND} <"${reference_input}" >"${tmpdir}/out.txt"
+    "$COMMAND" <"$reference_input" >"$tmpdir/out.txt"
 
     # then
-    cmp -s "${reference_output}" "${tmpdir}/out.txt"
+    cmp -s "$reference_output" "$tmpdir/out.txt"
 }
