@@ -12,7 +12,7 @@ function teardown() {
     rm -rf "${tmpdir}"
 }
 
-# test helper to run a test agains given file and check output
+# test helper to run a test against given file and check output
 function test_run() {
     # given
     reference_input="sitemaps/${1}-in.xml"
