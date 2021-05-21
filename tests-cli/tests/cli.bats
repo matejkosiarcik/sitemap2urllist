@@ -34,7 +34,7 @@ function setup() {
 
     # then
     [ "$status" -eq 0 ]
-    printf '%s\n' "$output" | grep 'sitemap2urlllist'
+    printf '%s\n' "$output" | grep 'sitemap2urllist'
     printf '%s\n' "$output" | grep -v '0.0.0'
     printf '%s\n' "$output" | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+'
 

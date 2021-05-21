@@ -23,7 +23,7 @@ const argv = yargs
 if (argv.version) {
   const rootDirectory = path.dirname(path.dirname(path.dirname(__filename)));
   const { version } = require(path.join(rootDirectory, 'package.json'));  // eslint-disable-line
-  console.log(`sitemap2urlllist v${version}`);
+  console.log(`sitemap2urllist v${version}`);
   process.exit(0);
 }
 
