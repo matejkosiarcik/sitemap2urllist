@@ -36,9 +36,9 @@ function setup() {
     [ "$status" -eq 0 ]
     printf '%s\n' "$output" | grep 'sitemap2urllist'
     printf '%s\n' "$output" | grep -v '0.0.0'
-    printf '%s\n' "$output" | grep -E 'v[0-9]+\.[0-9]+\.[0-9]+'
+    printf '%s\n' "$output" | grep -E '[0-9]+\.[0-9]+\.[0-9]+'
 
-    cli_version="$(printf '%s\n' "$output" | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | sed -E 's~[a-zA-Z]~~g')"
+    cli_version="$(printf '%s\n' "$output" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sed -E 's~[a-zA-Z]~~g')"
     package_version="$(jq .version 'package.json' | sed -E 's~"~~g')"
     [ "$cli_version" = "$package_version" ]
 }
