@@ -1,0 +1,36 @@
+[package]
+publish = false
+name = "sitemap2urllist"
+version = "0.2.1"
+authors = ["Matej Košiarčik <matej.kosiarcik@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+# clap = { version = ""3.0.0-beta.2"", optional = true }
+# clap = "2.33.3"
+clap = "3.0.0-beta.2"
+xmltree = "0.10.3"
+# minidom = "0.13.0"
+url = "2.2.2"
+# futures = "0.3"
+async-std = "1.9.0"
+# quick-xml = "0.22.0"
+surf = "2.2.0"
+async-recursion = "0.3.2"
+
+[lib]
+name = "sitemap2urllist"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sitemap2urllist"
+path = "src/main.rs"
+# required-features = ["bin-dependencies"]
+
+# [features]
+# bin-dependencies = ["clap"]
+
+# [dependencies]
+# # clap = { version = "2.33.3", optional = true }
+# clap = "2.33.3"
+# minidom = "0.13.0"
