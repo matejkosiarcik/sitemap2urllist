@@ -1,5 +1,0 @@
-https://example.com
-https://example.net
-https://example2.com
-https://example2.com/en
-https://example2.com/fr
