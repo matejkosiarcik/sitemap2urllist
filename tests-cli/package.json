@@ -1,12 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "test-node": "cross-env COMMAND=\"node bin/main.js\" ./node_modules/bats/bin/bats --recursive tests",
-    "test-smoke-docker": "cross-env COMMAND=\"docker run --volume \"${PWD}/../sitemaps:/src/sitemaps\" matejkosiarcik/sitemap2urllist:dev\" ./node_modules/bats/bin/bats tests/cli.bats",
-    "test-main": "cross-env COMMAND=\"sitemap2urllist\" ./node_modules/bats/bin/bats --recursive tests"
+    "test": "./node_modules/bats/bin/bats --recursive tests",
+    "test-docker": "cross-env COMMAND=\"docker run --volume \"$PWD/sitemaps:/src/sitemaps\" matejkosiarcik/sitemap2urllist:dev\" run-s test",
+    "test-install": "cross-env COMMAND=\"sitemap2urllist\" run-s test",
+    "test-rust": "cross-env COMMAND=\"./target/debug/sitemap2urllist\" run-s test",
+    "test-node": "cross-env COMMAND=\"node node/sitemap2urllist.js\" run-s test"
   },
   "devDependencies": {
     "bats": "^1.3.0",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5"
   }
 }

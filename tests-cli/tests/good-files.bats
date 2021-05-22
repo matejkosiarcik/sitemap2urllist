@@ -39,10 +39,6 @@ function test_run() {
     test_run multiple
 }
 
-@test 'File alternate.xml' {
-    test_run alternate
-}
-
 @test 'File order-alphanum.xml' {
     test_run order-alphanum
 }
@@ -88,5 +84,47 @@ function test_run() {
     "$COMMAND" <"$reference_input" >"$tmpdir/out.txt"
 
     # then
+    cmp -s "$reference_output" "$tmpdir/out.txt"
+}
+
+@test 'File alternate.xml without --alternate' {
+    # given
+    reference_input="sitemaps/alternate-in.xml"
+    reference_output="sitemaps/alternate-out-without.txt"
+
+    # when
+    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt"
+
+    # then
+    [ "$status" -eq 0 ]
+    [ "$output" = '' ]
+    cmp -s "$reference_output" "$tmpdir/out.txt"
+}
+
+@test 'File alternate.xml with --alternate' {
+    # given
+    reference_input="sitemaps/alternate-in.xml"
+    reference_output="sitemaps/alternate-out-with.txt"
+
+    # when
+    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt" --alternate
+
+    # then
+    [ "$status" -eq 0 ]
+    [ "$output" = '' ]
+    cmp -s "$reference_output" "$tmpdir/out.txt"
+}
+
+@test 'File single.xml with file: URL' {
+    # given
+    reference_input="file://$PWD/sitemaps/alternate-in.xml"
+    reference_output="sitemaps/alternate-out-without.txt"
+
+    # when
+    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt"
+
+    # then
+    [ "$status" -eq 0 ]
+    [ "$output" = '' ]
     cmp -s "$reference_output" "$tmpdir/out.txt"
 }
