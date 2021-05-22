@@ -1,5 +1,5 @@
-use std::fmt;
 use std::error::Error;
+use std::fmt;
 
 #[derive(Debug)]
 pub struct MyError {
@@ -8,9 +8,7 @@ pub struct MyError {
 
 impl MyError {
     pub fn new(message: String) -> Self {
-        Self {
-            message,
-        }
+        Self { message }
     }
 }
 

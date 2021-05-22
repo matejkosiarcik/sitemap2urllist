@@ -1,6 +1,6 @@
+use async_std::task;
 use clap::Clap;
 use sitemap2urllist::{convert, save};
-use async_std::task;
 
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
@@ -17,7 +17,7 @@ struct Args {
 
     /// Include alternate links
     #[clap(long)]
-    alternate: bool
+    alternate: bool,
 }
 
 fn main() -> Result<()> {

@@ -14,7 +14,7 @@ impl Ord for UrlEntry {
                 Ordering::Greater
             } else {
                 Ordering::Less
-            }
+            };
         }
 
         return self.url.cmp(&other.url);
