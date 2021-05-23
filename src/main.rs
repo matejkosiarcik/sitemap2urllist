@@ -1,11 +1,11 @@
 use async_std::task;
 use clap::Clap;
-use sitemap2urllist::{convert, save};
+use sitemap2urllist::{convert, save, version};
 
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 #[derive(Clap, Debug)]
-#[clap(name = env!("CARGO_PKG_NAME"), version = env!("CARGO_PKG_VERSION"))]
+#[clap(name = "sitemap2urllist", version = version())]
 struct Args {
     /// Output path for urllist (- for stdout)
     #[clap(short, long, default_value = "-")]
@@ -28,6 +28,6 @@ fn main() -> Result<()> {
 
 async fn async_main(args: Args) -> Result<()> {
     let urls = convert(&args.file, args.alternate).await?;
-    save(args.output.as_str(), &urls).await?;
+    save(args.output.as_str(), &urls)?;
     Ok(())
 }

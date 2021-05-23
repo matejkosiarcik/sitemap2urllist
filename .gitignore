@@ -14,9 +14,9 @@ Package Control.*
 
 # dependencies
 node_modules/
-target/
 
 # build
+target/
 build/
 dist/
-types/
+pkg/

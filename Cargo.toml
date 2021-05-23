@@ -4,23 +4,35 @@ name = "sitemap2urllist"
 version = "0.2.1"
 authors = ["Matej Košiarčik <matej.kosiarcik@gmail.com>"]
 edition = "2018"
+license = "MIT"
+repository = "https://github.com/matejkosiarcik/sitemap2urllist"
+description = "Simple sitemap.xml to urllist.txt converter"
 
 [dependencies]
-# clap = { version = ""3.0.0-beta.2"", optional = true }
-# clap = "2.33.3"
-clap = "3.0.0-beta.2"
 xmltree = "0.10.3"
-# minidom = "0.13.0"
 url = "2.2.2"
-# futures = "0.3"
 async-std = "1.9.0"
-# quick-xml = "0.22.0"
-surf = "2.2.0"
 async-recursion = "0.3.2"
+clap = "3.0.0-beta.2"
+getrandom = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+surf = "2.2.0"
+# clap = { version = "3.0.0-beta.2", optional = true }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+js-sys = "0.3.51"
+getrandom = { version = "0.2", features = ["js"] }
+reqwest = "0.11"
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+wasm-bindgen-futures = "0.4.24"
 
 [lib]
 name = "sitemap2urllist"
 path = "src/lib.rs"
+# crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
 
 [[bin]]
 name = "sitemap2urllist"
@@ -29,8 +41,3 @@ path = "src/main.rs"
 
 # [features]
 # bin-dependencies = ["clap"]
-
-# [dependencies]
-# # clap = { version = "2.33.3", optional = true }
-# clap = "2.33.3"
-# minidom = "0.13.0"

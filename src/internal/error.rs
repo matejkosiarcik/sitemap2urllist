@@ -1,7 +1,8 @@
 use std::error::Error;
 use std::fmt;
+use serde::{Serialize, Deserialize};
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct MyError {
     pub message: String,
 }
