@@ -1,20 +1,16 @@
-// mod error;
 use crate::internal::error::MyError;
 use crate::internal::url_entry::UrlEntry;
+use crate::internal::utils::*;
 
-use async_recursion::async_recursion;
 use std::fs::File;
 use std::io::stdin;
 use std::io::prelude::*;
 use url::Url;
 use xmltree::Element;
-
-type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
+use std::collections::VecDeque;
 
 pub async fn convert(input: &str, alternate: bool) -> Result<Vec<String>> {
-    let content = read(input).await?;
-
-    let mut entries = collect_entries(content.as_str()).await?;
+    let mut entries = collect_entries(input).await?;
     entries.sort();
 
     let urls: Vec<String> = entries
@@ -34,23 +30,38 @@ pub async fn convert(input: &str, alternate: bool) -> Result<Vec<String>> {
     return Ok(urls);
 }
 
-#[async_recursion]
-async fn collect_entries(content: &str) -> Result<Vec<UrlEntry>> {
-    let root = Element::parse(content.as_bytes())?;
+async fn collect_entries(location: &str) -> Result<Vec<UrlEntry>> {
+    let mut urls: VecDeque<String> = VecDeque::new();
+    urls.push_back(location.to_string());
+    let mut entries: Vec<UrlEntry> = vec![];
 
-    if root.name == "urlset" {
-        collect_urlset(&root)
-    } else if root.name == "sitemapindex" {
-        collect_sitemapindex(&root).await
-    } else {
-        Err(Box::from(MyError::new(format!(
-            "Unknown xml root: {}; expected <urlset> or <sitemapindex>.",
-            root.name
-        ))))
+    // Loop till we have no more URLs to read
+    // We start with a single URL
+    // But because sitemaps can have <sitemapindex> it can grow unpredictably
+    while !urls.is_empty() {
+        let url = urls.pop_front().unwrap();
+        let content =  read(url.as_str()).await?;
+        let root = Element::parse(content.as_bytes())?;
+
+        if root.name == "urlset" {
+            entries.append(&mut collect_urlset(&root)?);
+        } else if root.name == "sitemapindex" {
+            collect_sitemapindex(&root)?
+                .into_iter()
+                .for_each(|url | urls.push_back(url));
+        } else {
+            return Err(Box::from(MyError::new(format!(
+                "Unknown xml root: {}; expected <urlset> or <sitemapindex>.",
+                root.name
+            ))));
+        }
     }
+
+    Ok(entries)
 }
 
 fn collect_urlset(root: &Element) -> Result<Vec<UrlEntry>> {
+    assert_eq!(root.name, "urlset");
     let entries = root
         .children
         .iter()
@@ -97,8 +108,8 @@ fn collect_urlset(root: &Element) -> Result<Vec<UrlEntry>> {
     Ok(entries)
 }
 
-#[async_recursion]
-async fn collect_sitemapindex(root: &Element) -> Result<Vec<UrlEntry>> {
+fn collect_sitemapindex(root: &Element) -> Result<Vec<String>> {
+    assert_eq!(root.name, "sitemapindex");
     let sitemap_urls: Vec<String> = root
         .children
         .iter()
@@ -108,19 +119,13 @@ async fn collect_sitemapindex(root: &Element) -> Result<Vec<UrlEntry>> {
         .flat_map(|el| el.get_text())
         .map(|cow| cow.to_string())
         .collect();
-
-    let mut entries: Vec<UrlEntry> = vec![];
-    for url in sitemap_urls {
-        let content: String = read(url.trim()).await?;
-        let mut entry: Vec<UrlEntry> = collect_entries(content.as_str()).await?;
-        entries.append(&mut entry);
-    }
-    Ok(entries)
+    Ok(sitemap_urls)
 }
 
 async fn read(input: &str) -> Result<String> {
     let url = Url::parse(input);
     let mut content: String = "".to_string();
+
     if input == "-" {
         stdin().read_to_string(&mut content)?;
     } else if url.is_ok() {
@@ -128,14 +133,12 @@ async fn read(input: &str) -> Result<String> {
         if url.scheme() == "http" || url.scheme() == "https" {
             #[cfg(target_arch = "wasm32")]
                 {
-                    let response = reqwest::get(url).await?;
-                    content = response.text().await?;
+                    content = reqwest::get(url).await?.text().await?;
                 }
 
             #[cfg(not(target_arch = "wasm32"))]
                 {
-                    let mut response = surf::get(url.to_string()).await?;
-                    content = response.body_string().await?;
+                    content = surf::get(url.to_string()).await?.body_string().await?;
                 }
         } else if url.scheme() == "file" {
             let mut file = File::open(url.path())?;

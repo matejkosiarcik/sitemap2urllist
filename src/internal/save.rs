@@ -1,8 +1,8 @@
+use crate::internal::utils::*;
+
 use std::fs::File;
 use std::io::stdout;
 use std::io::prelude::*;
-
-type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 // TODO: &Vec or Vec?
 pub fn save(output: &str, urls: &Vec<String>) -> Result<()> {
