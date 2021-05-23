@@ -18,7 +18,7 @@ bootstrap:
 
 .PHONY: lint
 lint:
-	npm run lint
+	npm --prefix node run lint
 	cargo check
 
 .PHONY: fmt
