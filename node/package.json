@@ -2,7 +2,7 @@
   "name": "sitemap2urllist",
   "version": "0.2.1",
   "license": "MIT",
-  "description": "Simple sitemap.xml to urllist.txt converter (library and cli)",
+  "description": "Simple sitemap.xml to urllist.txt converter",
   "homepage": "https://github.com/matejkosiarcik/sitemap2urllist#readme",
   "keywords": [
     "sitemap",
@@ -27,47 +27,37 @@
   "engines": {
     "node": ">=14"
   },
-  "main": "dist/lib/lib.js",
-  "types": "types/lib/lib.d.ts",
+  "main": "dist/lib.js",
+  "types": "dist/lib.d.ts",
   "bin": {
-    "sitemap2urllist": "bin/main.js"
+    "sitemap2urllist": "bin/cli.js"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "bin/",
-    "dist/",
-    "types/lib/"
+    "bin/cli.js",
+    "dist/main.js",
+    "dist/lib.js",
+    "dist/lib.d.ts",
+    "wasm/sitemap2urllist.js",
+    "wasm/sitemap2urllist_bg.wasm"
   ],
   "scripts": {
     "build": "tsc",
-    "test": "jest --runInBand",
     "lint": "run-p lint:*",
     "lint:tsc": "tsc --noEmit",
-    "lint:es": "eslint --max-warnings 0 \"**/*.{ts,js}\"",
-    "fmt": "run-p fmt:*",
-    "fmt:es": "eslint --fix \"**/*.{ts,js}\""
+    "run": "node bin/cli.js"
   },
   "dependencies": {
-    "node-fetch": "^2.0.0",
-    "xml-js": "^1.6.0",
+    "isomorphic-fetch": "^3.0.0",
     "yargs": "^17.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.3.0",
-    "@types/node-fetch": "^2.5.10",
-    "@types/yargs": "^16.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.24.0",
-    "@typescript-eslint/parser": "^4.24.0",
-    "eslint": "^7.26.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.23.2",
-    "jest": "^26.6.3",
+    "@types/node": "^15.6.0",
+    "@types/yargs": "^17.0.0",
     "node-prune": "^1.0.2",
     "npm-run-all": "^4.1.5",
-    "ts-jest": "^26.5.6",
     "typescript": "^4.2.4"
   }
 }

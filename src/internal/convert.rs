@@ -9,8 +9,18 @@ use url::Url;
 use xmltree::Element;
 use std::collections::VecDeque;
 
-pub async fn convert(input: &str, alternate: bool) -> Result<Vec<String>> {
-    let mut entries = collect_entries(input).await?;
+#[cfg(target_arch = "wasm32")]
+use wasm_bindgen::prelude::*;
+
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen(module = "/glue.js")]
+extern "C" {
+    fn readStdinJS() -> String;
+    fn readFileJS(path: &str) -> String;
+}
+
+pub async fn convert(path: &str, alternate: bool) -> Result<Vec<String>> {
+    let mut entries = collect_entries(path).await?;
     entries.sort();
 
     let urls: Vec<String> = entries
@@ -127,7 +137,15 @@ async fn read(input: &str) -> Result<String> {
     let mut content: String = "".to_string();
 
     if input == "-" {
-        stdin().read_to_string(&mut content)?;
+        #[cfg(target_arch = "wasm32")]
+            {
+                content = readStdinJS();
+            }
+
+        #[cfg(not(target_arch = "wasm32"))]
+            {
+                stdin().read_to_string(&mut content)?;
+            }
     } else if url.is_ok() {
         let url = url.unwrap();
         if url.scheme() == "http" || url.scheme() == "https" {
@@ -141,8 +159,7 @@ async fn read(input: &str) -> Result<String> {
                     content = surf::get(url.to_string()).await?.body_string().await?;
                 }
         } else if url.scheme() == "file" {
-            let mut file = File::open(url.path())?;
-            file.read_to_string(&mut content)?;
+            content = read_file(url.path())?;
         } else {
             return Err(Box::from(MyError::new(format!(
                 "Unexpected url scheme {} from {}",
@@ -151,9 +168,24 @@ async fn read(input: &str) -> Result<String> {
             ))));
         }
     } else {
-        let mut file = File::open(input)?;
-        file.read_to_string(&mut content)?;
+        content = read_file(input)?;
     }
 
     Ok(content)
+}
+
+fn read_file(path: &str) -> Result<String> {
+    #[cfg(target_arch = "wasm32")]
+        {
+            let content = readFileJS(path);
+            Ok(content)
+        }
+
+    #[cfg(not(target_arch = "wasm32"))]
+        {
+            let mut content = String::new();
+            let mut file = File::open(path)?;
+            file.read_to_string(&mut content)?;
+            Ok(content)
+        }
 }
