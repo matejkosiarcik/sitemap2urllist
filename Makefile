@@ -13,27 +13,27 @@ all: bootstrap build
 
 .PHONY: bootstrap
 bootstrap:
-	npm ci
+	npm --prefix node ci
 	npm --prefix tests-cli ci
 
 .PHONY: lint
 lint:
 	npm run lint
+	cargo check
+
+.PHONY: fmt
+fmt:
+	cargo fmt
 
 .PHONY: build
 build:
-	npm run build
+	cargo build
+	cargo build --release
+	wasm-pack build --release --target nodejs --out-dir node/wasm
+	npm --prefix node run build
 
 .PHONY: test
 test:
-	npm test
+	npm --prefix tests-cli run test-rust
+	npm --prefix tests-cli run test-rust-release
 	npm --prefix tests-cli run test-node
-
-.PHONY: docker-build
-docker-build:
-	docker build . --tag matejkosiarcik/sitemap2urllist:dev
-
-.PHONY: docker-test
-docker-test:
-	docker run matejkosiarcik/sitemap2urllist:dev --help >/dev/null
-	npm --prefix tests-cli run test-smoke-docker

@@ -5,6 +5,7 @@
     "test-docker": "cross-env COMMAND=\"docker run --volume \"$PWD/sitemaps:/src/sitemaps\" matejkosiarcik/sitemap2urllist:dev\" run-s test",
     "test-install": "cross-env COMMAND=\"sitemap2urllist\" run-s test",
     "test-rust": "cross-env COMMAND=\"./target/debug/sitemap2urllist\" run-s test",
+    "test-rust-release": "cross-env COMMAND=\"./target/release/sitemap2urllist\" run-s test",
     "test-node": "cross-env COMMAND=\"node ./node/bin/cli.js\" run-s test"
   },
   "devDependencies": {

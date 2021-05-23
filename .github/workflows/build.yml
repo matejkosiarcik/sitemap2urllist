@@ -20,5 +20,8 @@ jobs:
         with:
           node-version: 14
 
+      - name: Setup Rust 🧩
+        uses: raftario/setup-rust-action@v1.0.0
+
       - name: Build 🔧
         run: make bootstrap lint build test
