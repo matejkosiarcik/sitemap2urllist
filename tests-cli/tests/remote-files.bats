@@ -41,7 +41,7 @@ function test_run() {
     [ "$status" -eq 0 ]
     [ "$output" = '' ]
     [ "$(head -n 1 <"$tmpdir/out.txt")" = 'https://www.sitemaps.org/' ]
-    [ "$(grep 'https://www.sitemaps.org' <"$tmpdir/out.txt" | wc -l)" -eq "$(wc -l <"$tmpdir/out.txt")" ]
+    [ "$(grep -c 'https://www.sitemaps.org' <"$tmpdir/out.txt")" -eq "$(wc -l <"$tmpdir/out.txt")" ]
     [ "$(wc -l <"$tmpdir/out.txt")" -gt 1 ]
 }
 
