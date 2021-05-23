@@ -2,12 +2,12 @@ use crate::internal::error::MyError;
 use crate::internal::url_entry::UrlEntry;
 use crate::internal::utils::*;
 
+use std::collections::VecDeque;
 use std::fs::File;
-use std::io::stdin;
 use std::io::prelude::*;
+use std::io::stdin;
 use url::Url;
 use xmltree::Element;
-use std::collections::VecDeque;
 
 #[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
@@ -50,7 +50,7 @@ async fn collect_entries(location: &str) -> Result<Vec<UrlEntry>> {
     // But because sitemaps can have <sitemapindex> it can grow unpredictably
     while !urls.is_empty() {
         let url = urls.pop_front().unwrap();
-        let content =  read(url.as_str()).await?;
+        let content = read(url.as_str()).await?;
         let root = Element::parse(content.as_bytes())?;
 
         if root.name == "urlset" {
@@ -58,7 +58,7 @@ async fn collect_entries(location: &str) -> Result<Vec<UrlEntry>> {
         } else if root.name == "sitemapindex" {
             collect_sitemapindex(&root)?
                 .into_iter()
-                .for_each(|url | urls.push_back(url));
+                .for_each(|url| urls.push_back(url));
         } else {
             return Err(Box::from(MyError::new(format!(
                 "Unknown xml root: {}; expected <urlset> or <sitemapindex>.",
@@ -138,26 +138,26 @@ async fn read(input: &str) -> Result<String> {
 
     if input == "-" {
         #[cfg(target_arch = "wasm32")]
-            {
-                content = readStdinJS();
-            }
+        {
+            content = readStdinJS();
+        }
 
         #[cfg(not(target_arch = "wasm32"))]
-            {
-                stdin().read_to_string(&mut content)?;
-            }
+        {
+            stdin().read_to_string(&mut content)?;
+        }
     } else if url.is_ok() {
         let url = url.unwrap();
         if url.scheme() == "http" || url.scheme() == "https" {
             #[cfg(target_arch = "wasm32")]
-                {
-                    content = reqwest::get(url).await?.text().await?;
-                }
+            {
+                content = reqwest::get(url).await?.text().await?;
+            }
 
             #[cfg(not(target_arch = "wasm32"))]
-                {
-                    content = surf::get(url.to_string()).await?.body_string().await?;
-                }
+            {
+                content = surf::get(url.to_string()).await?.body_string().await?;
+            }
         } else if url.scheme() == "file" {
             content = read_file(url.path())?;
         } else {
@@ -176,16 +176,16 @@ async fn read(input: &str) -> Result<String> {
 
 fn read_file(path: &str) -> Result<String> {
     #[cfg(target_arch = "wasm32")]
-        {
-            let content = readFileJS(path);
-            Ok(content)
-        }
+    {
+        let content = readFileJS(path);
+        Ok(content)
+    }
 
     #[cfg(not(target_arch = "wasm32"))]
-        {
-            let mut content = String::new();
-            let mut file = File::open(path)?;
-            file.read_to_string(&mut content)?;
-            Ok(content)
-        }
+    {
+        let mut content = String::new();
+        let mut file = File::open(path)?;
+        file.read_to_string(&mut content)?;
+        Ok(content)
+    }
 }

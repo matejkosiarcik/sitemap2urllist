@@ -1,8 +1,8 @@
 use crate::internal::utils::*;
 
 use std::fs::File;
-use std::io::stdout;
 use std::io::prelude::*;
+use std::io::stdout;
 
 #[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
@@ -23,25 +23,25 @@ pub fn save(path: &str, urls: &Vec<String>) -> Result<()> {
 
     if path == "-" {
         #[cfg(target_arch = "wasm32")]
-            {
-                writeStdoutJS(content.as_str());
-            }
+        {
+            writeStdoutJS(content.as_str());
+        }
 
         #[cfg(not(target_arch = "wasm32"))]
-            {
-                stdout().write_all(content.as_bytes())?;
-            }
+        {
+            stdout().write_all(content.as_bytes())?;
+        }
     } else {
         #[cfg(target_arch = "wasm32")]
-            {
-                writeFileJS(path, content.as_str());
-            }
+        {
+            writeFileJS(path, content.as_str());
+        }
 
         #[cfg(not(target_arch = "wasm32"))]
-            {
-                let mut file = File::create(path)?;
-                file.write_all(content.as_bytes())?;
-            }
+        {
+            let mut file = File::create(path)?;
+            file.write_all(content.as_bytes())?;
+        }
     }
     Ok(())
 }
