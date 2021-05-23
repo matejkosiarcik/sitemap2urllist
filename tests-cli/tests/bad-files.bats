@@ -17,7 +17,7 @@ function test_run() {
     reference_input="sitemaps/unsupported/${1}.txt"
 
     # when
-    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt"
+    run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
 
     # then
     [ ! -e "$tmpdir/out.txt" ]

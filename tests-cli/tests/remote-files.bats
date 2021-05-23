@@ -18,7 +18,7 @@ function test_run() {
     reference_input="${1}"
 
     # when
-    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt"
+    run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
 
     # then
     [ "$status" -eq 0 ]
@@ -35,7 +35,7 @@ function test_run() {
     reference_input="sitemaps/sitemapindex-in.xml"
 
     # when
-    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt"
+    run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
 
     # then
     [ "$status" -eq 0 ]
@@ -58,7 +58,7 @@ function test_run() {
         '</sitemapindex>' >"$reference_input"
 
     # when
-    run "$COMMAND" -f "$reference_input" -o "$tmpdir/out.txt"
+    run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
 
     # then
     [ "$status" -eq 0 ]
