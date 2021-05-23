@@ -53,48 +53,41 @@ Note: package includes typescript definitions
 
 ```sh
 $ sitemap2urllist --help
-Options:
-  -h, --help     Show usage                                            [boolean]
-  -V, --version  Show current version                                  [boolean]
-  -f, --file     Input file path (- for stdin) or http(s) address
-                                              [string] [required] [default: "-"]
-  -o, --output   Output file path (- for stdout)
-                                              [string] [required] [default: "-"]
+sitemap2urllist <version>
+
+USAGE:
+    sitemap2urllist [FLAGS] [OPTIONS]
+
+FLAGS:
+        --alternate    Include alternate links
+    -h, --help         Prints help information
+    -V, --version      Prints version information
+
+OPTIONS:
+    -f, --file <file>        Input path or URL for sitemap (- for stdin) [default: -]
+    -o, --output <output>    Output path for urllist (- for stdout) [default: -]
 ```
 
 ### Library
 
-JavaScript:
-
-```js
-const sitemap2urllist = require('sitemap2urllist').sitemap2urllist;
-const urllist = await sitemap2urllist(...); // accepts string | Buffer | URL
-```
-
-TypeScript:
-
 ```ts
-import { sitemap2urllist } from 'sitemap2urllist';
-const urllist/*: string*/ = await sitemap2urllist(...); // accepts string | Buffer | URL
+import { convert, save } from 'sitemap2urllist';
+const urllist: Array<string> = await convert('sitemap.xml', false);
+save('urllist.txt', urllist);
 ```
 
 ## Examples
 
 ```sh
-$ cat /sitemap.xml
+$ cat sitemap.xml
 <urlset>
   <url>
     <loc>https://example.com</loc>
   </url>
-  <url>
-    <loc>https://example.com/answer</loc>
-    <priority>0.42</priority>
-  </url>
 </urlset>
-$ sitemap2urllist -f /sitemap.xml -o /urllist.txt
+$ sitemap2urllist -f sitemap.xml -o urllist.txt
 $ cat /urllist.txt
 https://example.com
-https://example.com/answer
 ```
 
 ## Alternatives

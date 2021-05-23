@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## \[Unreleased\]
 
-- add support for remote http(s) URLs
-- add support for file URLs
-- remove dependency on fs/promises
-- add docker image
+- Added
+  - Support for remote `http(s)://` URLs
+  - Support for `file://` URLs
+  - Support for &lt;sitemapindex&gt; files
+- Changed
+  - Rewritten project from Typescript to Rust
+  - Performance imrpovements
 
 ## \[0.2.1\] - 2021-02-28
 
