@@ -18,8 +18,7 @@ bootstrap:
 
 .PHONY: lint
 lint:
-	npm --prefix node run lint
-	cargo check
+	cargo clippy
 
 .PHONY: fmt
 fmt:
