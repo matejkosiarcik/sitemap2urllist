@@ -38,13 +38,13 @@ function teardown() {
     printf '%s' "$output" | grep 'Unknown xml root: foo; expected <urlset> or <sitemapindex>'
 }
 
-@test 'Test not existant file' {
+@test 'Test not existent file' {
     # TODO: enable!
     # FIXME: enable!
     skip
 
     # given
-    reference_input="$tmpdir/not-existant.xml"
+    reference_input="$tmpdir/not-existent.xml"
 
     # when
     run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
