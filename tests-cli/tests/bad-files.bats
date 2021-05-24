@@ -12,9 +12,39 @@ function teardown() {
     rm -rf "$tmpdir"
 }
 
-function test_run() {
+@test 'Test invalid xml' {
     # given
-    reference_input="sitemaps/unsupported/$1.txt"
+    reference_input="sitemaps/unsupported/not-xml.txt"
+
+    # when
+    run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
+
+    # then
+    [ ! -e "$tmpdir/out.txt" ]
+    [ "$status" -ne 0 ]
+    printf '%s' "$output" | grep 'Malformed XML'
+}
+
+@test 'Test invalid sitemap' {
+    # given
+    reference_input="sitemaps/unsupported/not-sitemap.txt"
+
+    # when
+    run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
+
+    # then
+    [ ! -e "$tmpdir/out.txt" ]
+    [ "$status" -ne 0 ]
+    printf '%s' "$output" | grep 'Unknown xml root: foo; expected <urlset> or <sitemapindex>'
+}
+
+@test 'Test not existant file' {
+    # TODO: enable!
+    # FIXME: enable!
+    skip
+
+    # given
+    reference_input="$tmpdir/not-existant.xml"
 
     # when
     run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
@@ -23,12 +53,4 @@ function test_run() {
     [ ! -e "$tmpdir/out.txt" ]
     [ "$status" -ne 0 ]
     [ "$output" != '' ]
-}
-
-@test 'Test file not-xml.xml' {
-    test_run 'not-xml.xml'
-}
-
-@test 'Test file not-sitemap.xml' {
-    test_run 'not-sitemap.xml'
 }
