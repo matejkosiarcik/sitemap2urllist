@@ -28,6 +28,11 @@ if (args.version) {
 
 // main work
 (async () => {
-  let urls = await convert(args.file, args.alternate);
-  save(args.output, urls);
+  try {
+    let urls = await convert(args.file, args.alternate);
+    save(args.output, urls);
+  } catch (error) {
+    console.log(`Error: ${error}`);
+    process.exit(1);
+  }
 })();
