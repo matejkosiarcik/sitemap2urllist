@@ -18,10 +18,12 @@ bootstrap:
 
 .PHONY: lint
 lint:
+	cargo clippy --help >/dev/null 2>&1 || rustup component add clippy
 	cargo clippy
 
 .PHONY: fmt
 fmt:
+	cargo fmt --help >/dev/null 2>&1 || rustup component add rustfmt
 	cargo fmt
 
 .PHONY: build
