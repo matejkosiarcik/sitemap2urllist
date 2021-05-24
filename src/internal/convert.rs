@@ -33,11 +33,11 @@ pub async fn convert(path: &str, alternate: bool) -> Result<Vec<String>> {
                     .iter()
                     .for_each(|url| urls.push(url.as_str().to_string()));
             }
-            return urls;
+            urls
         })
         .flatten()
         .collect();
-    return Ok(urls);
+    Ok(urls)
 }
 
 async fn collect_entries(location: &str) -> Result<Vec<UrlEntry>> {
@@ -83,7 +83,7 @@ fn collect_urlset(root: &Element) -> Result<Vec<UrlEntry>> {
                 Some(loc) => loc
                     .get_text()
                     .map(|cow| cow.to_string())
-                    .unwrap_or("".to_string()),
+                    .unwrap_or_else(|| "".to_string()),
             };
             let url = _url.trim().to_string();
 
@@ -92,7 +92,7 @@ fn collect_urlset(root: &Element) -> Result<Vec<UrlEntry>> {
                 Some(priority) => priority
                     .get_text()
                     .map(|cow| cow.to_string())
-                    .unwrap_or("".to_string())
+                    .unwrap_or_else(|| "".to_string())
                     .trim()
                     .parse()
                     .unwrap_or(0.5),
@@ -105,14 +105,14 @@ fn collect_urlset(root: &Element) -> Result<Vec<UrlEntry>> {
                 .filter(|el| el.name == "link" || el.name == "xhtml:link")
                 .filter(|el| el.attributes["rel"] == "alternate")
                 .map(|el| el.attributes["href"].as_str().to_string())
-                .filter(|href| href.len() > 0)
+                .filter(|href| !href.is_empty())
                 .collect();
 
-            return UrlEntry {
+            UrlEntry {
                 url,
                 priority,
                 alt_urls,
-            };
+            }
         })
         .collect();
     Ok(entries)

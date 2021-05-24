@@ -27,7 +27,7 @@ pub async fn convert(input: String, alternate: bool) -> JsResult<Array> {
 }
 
 #[cfg(not(target_arch = "wasm32"))]
-pub fn save(output: &str, urls: &Vec<String>) -> Result<()> {
+pub fn save(output: &str, urls: &[String]) -> Result<()> {
     save::save(output, urls)
 }
 

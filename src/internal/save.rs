@@ -14,11 +14,10 @@ extern "C" {
     fn writeFileJS(path: &str, content: &str);
 }
 
-// TODO: &Vec or Vec?
-pub fn save(path: &str, urls: &Vec<String>) -> Result<()> {
+pub fn save(path: &str, urls: &[String]) -> Result<()> {
     let mut content: String = urls.join("\n");
     if !content.is_empty() {
-        content.push_str("\n");
+        content.push('\n');
     }
 
     if path == "-" {

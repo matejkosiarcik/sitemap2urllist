@@ -9,7 +9,7 @@ pub struct UrlEntry {
 
 impl Ord for UrlEntry {
     fn cmp(&self, other: &Self) -> Ordering {
-        if self.priority != other.priority {
+        if (self.priority - other.priority).abs() > 0.001 {
             return if self.priority < other.priority {
                 Ordering::Greater
             } else {
@@ -17,7 +17,7 @@ impl Ord for UrlEntry {
             };
         }
 
-        return self.url.cmp(&other.url);
+        self.url.cmp(&other.url)
     }
 }
 
