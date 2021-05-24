@@ -15,15 +15,16 @@ all: bootstrap build
 bootstrap:
 	npm --prefix node ci
 	npm --prefix tests-cli ci
+	cargo clippy --help >/dev/null 2>&1 || rustup component add clippy
+	cargo fmt --help >/dev/null 2>&1 || rustup component add rustfmt
+	command -v wasm-pack >/dev/null 2>&1 || curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
 .PHONY: lint
 lint:
-	cargo clippy --help >/dev/null 2>&1 || rustup component add clippy
 	cargo clippy
 
 .PHONY: fmt
 fmt:
-	cargo fmt --help >/dev/null 2>&1 || rustup component add rustfmt
 	cargo fmt
 
 .PHONY: build
