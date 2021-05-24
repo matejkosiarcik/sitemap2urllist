@@ -4,10 +4,7 @@ use crate::internal::save;
 use crate::internal::utils::*;
 
 #[cfg(target_arch = "wasm32")]
-use {
-    wasm_bindgen::prelude::*,
-    js_sys::Array,
-};
+use {js_sys::Array, wasm_bindgen::prelude::*};
 
 #[cfg(target_arch = "wasm32")]
 type JsResult<T> = std::result::Result<T, JsValue>;

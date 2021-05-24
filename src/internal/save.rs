@@ -3,13 +3,11 @@ use crate::internal::utils::*;
 #[cfg(not(target_arch = "wasm32"))]
 use {
     std::fs::File,
-    std::io::{stdout, prelude::*},
+    std::io::{prelude::*, stdout},
 };
 
 #[cfg(target_arch = "wasm32")]
-use {
-    wasm_bindgen::prelude::*,
-};
+use wasm_bindgen::prelude::*;
 
 #[cfg(target_arch = "wasm32")]
 #[wasm_bindgen(module = "/glue.js")]
