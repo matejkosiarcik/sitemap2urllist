@@ -15,7 +15,7 @@ function teardown() {
 # test helper to run a test against given file and check output
 function test_run() {
     # given
-    reference_input="${1}"
+    reference_input="$1"
 
     # when
     run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"

@@ -15,8 +15,8 @@ function teardown() {
 # test helper to run a test against given file and check output
 function test_run() {
     # given
-    reference_input="sitemaps/${1}-in.xml"
-    reference_output="sitemaps/${1}-out.txt"
+    reference_input="sitemaps/$1-in.xml"
+    reference_output="sitemaps/$1-out.txt"
 
     # when
     run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"

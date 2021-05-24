@@ -14,7 +14,7 @@ function teardown() {
 
 function test_run() {
     # given
-    reference_input="sitemaps/unsupported/${1}.txt"
+    reference_input="sitemaps/unsupported/$1.txt"
 
     # when
     run $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
