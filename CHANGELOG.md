@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Support for &lt;sitemapindex&gt; files
 - Changed
   - Rewritten project from Typescript to Rust
-  - Performance imrpovements
+  - Performance improvements
 
 ## \[0.2.1\] - 2021-02-28
 
