@@ -24,19 +24,24 @@ jobs:
           DEFAULT_BRANCH: master
           LINTER_RULES_PATH: /
 
-          # CSS is linted separately
+          # disable
           VALIDATE_CSS: false
-          YAML_CONFIG_FILE: .yamllint.yml
-
-          # JS is linted separately
           VALIDATE_JAVASCRIPT_ES: false
           VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_JSCPD: false # TODO: reenable JSCPD
           VALIDATE_TYPESCRIPT_ES: false
           VALIDATE_TYPESCRIPT_STANDARD: false
+          VALIDATE_RUST_2015: false
 
-          # misc
+          # config files
+          DOCKERFILE_HADOLINT_FILE_NAME: .hadolint.yaml
+          MARKDOWN_CONFIG_FILE: .markdownlint.json
+          PYTHON_BLACK_CONFIG_FILE: pyproject.toml
+          PYTHON_FLAKE8_CONFIG_FILE: setup.cfg
+          PYTHON_ISORT_CONFIG_FILE: pyproject.toml
+          PYTHON_PYLINT_CONFIG_FILE: pyproject.toml
           RUBY_CONFIG_FILE: .rubocop.yml
-          VALIDATE_JSCPD: false # TODO: reenable JSCPD
+          YAML_CONFIG_FILE: .yamllint.yml
 
   mega-linter:
     name: Mega-Linter
@@ -54,4 +59,5 @@ jobs:
           VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
           DEFAULT_BRANCH: master
           LINTER_RULES_PATH: /
+          JSON_V8R_FILTER_REGEX_EXCLUDE: composer.json
           # Rest of the config is in /.mega-linter.yml
