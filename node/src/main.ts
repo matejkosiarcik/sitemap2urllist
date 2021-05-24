@@ -32,7 +32,7 @@ if (args.version) {
     let urls = await convert(args.file, args.alternate);
     save(args.output, urls);
   } catch (error) {
-    console.log(`Error: ${error}`);
+    console.error(`Error: ${error}`);
     process.exit(1);
   }
 })();
