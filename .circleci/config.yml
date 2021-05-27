@@ -6,14 +6,7 @@ workflows:
     jobs:
       - azlint
       - lint
-      - build:
-          matrix:
-            parameters:
-              node_version:
-                - latest
-                - lts
-                - current-alpine
-                - lts-alpine
+      - build
 
 jobs:
   azlint:
@@ -25,20 +18,20 @@ jobs:
 
   lint:
     docker:
-      - image: node:lts
+      - image: rust:latest
     steps:
       - checkout
-      - run: npm ci && npm run lint
+      - run: |
+          curl -fLsS https://deb.nodesource.com/setup_lts.x | bash -
+          DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends nodejs
+      - run: make bootstrap lint
 
   build:
-    parameters:
-      node_version:
-        type: string
     docker:
-      - image: "node:<< parameters.node_version >>"
+      - image: rust:latest
     steps:
       - checkout
-      - run: node --version
-      - run: npm --version
-      - run: (apt-get update && apt-get install -y jq) || apk add jq make bash
+      - run: |
+          curl -fLsS https://deb.nodesource.com/setup_lts.x | bash -
+          DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends nodejs jq
       - run: make bootstrap build test

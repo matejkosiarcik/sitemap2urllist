@@ -13,27 +13,29 @@ all: bootstrap build
 
 .PHONY: bootstrap
 bootstrap:
-	npm ci
+	npm --prefix node ci
 	npm --prefix tests-cli ci
+	cargo clippy --help >/dev/null 2>&1 || rustup component add clippy
+	cargo fmt --help >/dev/null 2>&1 || rustup component add rustfmt
+	command -v wasm-pack >/dev/null 2>&1 || curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
 .PHONY: lint
 lint:
-	npm run lint
+	cargo clippy
+
+.PHONY: fmt
+fmt:
+	cargo fmt
 
 .PHONY: build
 build:
-	npm run build
+	cargo build
+	cargo build --release
+	wasm-pack build --release --target nodejs --out-dir node/wasm
+	npm --prefix node run build
 
 .PHONY: test
 test:
-	npm test
+	npm --prefix tests-cli run test-rust
+	npm --prefix tests-cli run test-rust-release
 	npm --prefix tests-cli run test-node
-
-.PHONY: docker-build
-docker-build:
-	docker build . --tag matejkosiarcik/sitemap2urllist:dev
-
-.PHONY: docker-test
-docker-test:
-	docker run matejkosiarcik/sitemap2urllist:dev --help >/dev/null
-	npm --prefix tests-cli run test-smoke-docker

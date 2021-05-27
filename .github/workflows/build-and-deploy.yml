@@ -17,6 +17,11 @@ jobs:
         with:
           node-version: 14
 
+      - name: Setup Rust 🧩
+        uses: actions-rs/toolchain@v1.0.1
+        with:
+          toolchain: stable
+
       - name: Build 🔧
         run: make bootstrap build
 
@@ -25,5 +30,6 @@ jobs:
         if: github.repository == 'matejkosiarcik/sitemap2urllist'
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          package: ./node/package.json
           check-version: true
           access: public

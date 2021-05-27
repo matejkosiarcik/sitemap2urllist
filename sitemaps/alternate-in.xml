@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http:www.w3.org/1999/xhtml">
-    <url>
-        <loc>https://example.com</loc>
-        <xhtml:link rel="alternate" href="https://example.net" />
-    </url>
-    <url>
-        <loc>https://example2.com</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="https://example2.com/en" />
-        <xhtml:link rel="alternate" hreflang="fr" href="https://example2.com/fr" />
-    </url>
+  <url>
+    <loc>https://example.com</loc>
+    <xhtml:link rel="alternate" href="https://example.net"/>
+  </url>
+  <url>
+    <loc>https://example2.com</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://example2.com/en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://example2.com/fr"/>
+  </url>
 </urlset>
