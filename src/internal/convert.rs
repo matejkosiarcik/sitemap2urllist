@@ -6,22 +6,6 @@ use std::collections::VecDeque;
 use url::Url;
 use xmltree::Element;
 
-#[cfg(not(target_arch = "wasm32"))]
-use {
-    std::fs::File,
-    std::io::{prelude::*, stdin},
-};
-
-#[cfg(target_arch = "wasm32")]
-use wasm_bindgen::prelude::*;
-
-#[cfg(target_arch = "wasm32")]
-#[wasm_bindgen(module = "/glue.js")]
-extern "C" {
-    fn readStdinJS() -> String;
-    fn readFileJS(path: &str) -> String;
-}
-
 pub async fn convert(path: &str, alternate: bool) -> Result<Vec<String>> {
     let mut entries = collect_entries(path).await?;
     entries.sort();
@@ -82,11 +66,11 @@ fn collect_urlset(root: &Element) -> Result<Vec<UrlEntry>> {
         .filter(|el| el.name == "url")
         .map(|el| {
             let _url = match el.get_child("loc") {
-                None => "".to_string(),
+                None => String::new(),
                 Some(loc) => loc
                     .get_text()
                     .map(|cow| cow.to_string())
-                    .unwrap_or_else(|| "".to_string()),
+                    .unwrap_or_else(String::new),
             };
             let url = _url.trim().to_string();
 
@@ -95,7 +79,7 @@ fn collect_urlset(root: &Element) -> Result<Vec<UrlEntry>> {
                 Some(priority) => priority
                     .get_text()
                     .map(|cow| cow.to_string())
-                    .unwrap_or_else(|| "".to_string())
+                    .unwrap_or_else(String::new)
                     .trim()
                     .parse()
                     .unwrap_or(0.5),
@@ -137,18 +121,10 @@ fn collect_sitemapindex(root: &Element) -> Result<Vec<String>> {
 
 async fn read(input: &str) -> Result<String> {
     let url = Url::parse(input);
-    let mut content: String = "".to_string();
+    let mut content: String = String::new();
 
     if input == "-" {
-        #[cfg(target_arch = "wasm32")]
-        {
-            content = readStdinJS();
-        }
-
-        #[cfg(not(target_arch = "wasm32"))]
-        {
-            stdin().read_to_string(&mut content)?;
-        }
+        content = read_stdin()?;
     } else if url.is_ok() {
         let url = url.unwrap();
         if url.scheme() == "http" || url.scheme() == "https" {
@@ -175,20 +151,4 @@ async fn read(input: &str) -> Result<String> {
     }
 
     Ok(content)
-}
-
-fn read_file(path: &str) -> Result<String> {
-    #[cfg(target_arch = "wasm32")]
-    {
-        let content = readFileJS(path);
-        Ok(content)
-    }
-
-    #[cfg(not(target_arch = "wasm32"))]
-    {
-        let mut content = String::new();
-        let mut file = File::open(path)?;
-        file.read_to_string(&mut content)?;
-        Ok(content)
-    }
 }
