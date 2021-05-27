@@ -18,7 +18,7 @@ jobs:
           node-version: 14
 
       - name: Setup Rust 🧩
-        uses: actions-rs/toolchain@v1.0.1
+        uses: actions-rs/toolchain@v1.0.7
         with:
           toolchain: stable
 
