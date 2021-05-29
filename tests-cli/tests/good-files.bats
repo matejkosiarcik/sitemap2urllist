@@ -35,6 +35,10 @@ function test_run() {
     test_run single
 }
 
+@test 'File xmlns.xml' {
+    test_run xmlns
+}
+
 @test 'File multiple.xml' {
     test_run multiple
 }
