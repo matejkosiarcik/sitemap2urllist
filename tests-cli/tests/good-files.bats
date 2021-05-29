@@ -51,10 +51,6 @@ function test_run() {
     test_run order-priority
 }
 
-@test 'File without-preamble.xml' {
-    test_run without-preamble
-}
-
 @test 'Standard input' {
     # given
     reference_input='sitemaps/single-in.xml'
@@ -86,6 +82,32 @@ function test_run() {
 
     # when
     $COMMAND <"$reference_input" >"$tmpdir/out.txt"
+
+    # then
+    cmp -s "$reference_output" "$tmpdir/out.txt"
+}
+
+@test 'File without preamble' {
+    # given
+    reference_input="$tmpdir/in.xml"
+    reference_output="$tmpdir/out.txt"
+    printf '<urlset><url><loc>https://example.com</loc></url></urlset>' >"$reference_input"
+    printf 'https://example.com\n' >"$reference_output"
+
+    # when
+    $COMMAND -f "$reference_input" -o "$tmpdir/out.txt"
+
+    # then
+    cmp -s "$reference_output" "$tmpdir/out.txt"
+}
+
+@test 'Long arguments' {
+    # given
+    reference_input="sitemaps/single-in.xml"
+    reference_output="sitemaps/single-out.txt"
+
+    # when
+    $COMMAND --file "$reference_input" --output "$tmpdir/out.txt"
 
     # then
     cmp -s "$reference_output" "$tmpdir/out.txt"
