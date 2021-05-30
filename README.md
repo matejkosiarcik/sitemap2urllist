@@ -2,7 +2,8 @@
 
 > Simple sitemap.xml to urllist.txt converter
 
-[![npm](https://img.shields.io/npm/v/sitemap2urllist)](https://www.npmjs.com/package/sitemap2urllist)
+[![npmjs.org version](https://img.shields.io/npm/v/sitemap2urllist)](https://www.npmjs.com/package/sitemap2urllist)
+<!-- TODO: [![crates.io version](https://img.shields.io/crates/v/sitemap2urllist)](https://crates.io/crates/sitemap2urllist) -->
 
 <!-- toc -->
 
@@ -18,7 +19,7 @@
 
 <!-- tocstop -->
 
-## What & Why
+## About
 
 What is `sitemap.xml`?
 [sitemaps.org](https://www.sitemaps.org/protocol.html) describes it well.
@@ -27,7 +28,7 @@ It is used mainly for SEO.
 You probably already know it.
 
 What is `urllist.txt`?
-It's basically a plain text sitemap, 1 line for 1 url (no other metadata).
+It's basically a plain text sitemap, 1 url per line.
 It was used by _Yahoo!_ search engine back in the days.
 Now it is not used by anyone noteworthy AFAIK.
 
@@ -39,7 +40,7 @@ I have found it is great for easy high-level testing of your website, like:
 - Example with [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme):
   `curl https://example.com/urllist.txt | xargs -n1 blc`
 
-## Features
+### Features
 
 - 📂 Reading files or stdin
 - 🗳 Writing files or stdout
@@ -52,14 +53,25 @@ I have found it is great for easy high-level testing of your website, like:
 ## Installation
 
 ```sh
+# rust
+cargo install sitemap2urllist # NOTE: not yet ready
+# nodejs
 npm install --save-dev sitemap2urllist
 ```
-
-Note: package includes typescript definitions
 
 ## Usage
 
 ### CLI
+
+```sh
+$ cat sitemap.xml
+<urlset><url><loc>https://example.com</loc></url></urlset>
+$ sitemap2urllist -f sitemap.xml -o urllist.txt
+$ cat urllist.txt
+https://example.com
+```
+
+When in doubt, get help:
 
 ```sh
 $ sitemap2urllist --help
@@ -80,20 +92,22 @@ OPTIONS:
 
 ### Library
 
-```ts
-import { convert, save } from 'sitemap2urllist';
-const urllist: Array<string> = await convert('sitemap.xml');
-save('urllist.txt', urllist);
+Rust:
+
+```rust
+use sitemap2urllist::{convert, save};
+// ...
+let urllist = convert("sitemap.xml", false).await?; // Vec<String>
+save("urllist.txt", urllist)?;
 ```
 
-## Examples
+JavaScript/TypeScript:
 
-```sh
-$ cat sitemap.xml
-<urlset><url><loc>https://example.com</loc></url></urlset>
-$ sitemap2urllist -f sitemap.xml -o urllist.txt
-$ cat urllist.txt
-https://example.com
+```js
+import { convert, save } from 'sitemap2urllist';
+// ...
+const urllist = await convert('sitemap.xml'); // Array<string>
+save('urllist.txt', urllist);
 ```
 
 ## Alternatives
