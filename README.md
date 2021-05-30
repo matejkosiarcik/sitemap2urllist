@@ -39,6 +39,16 @@ I have found it is great for easy high-level testing of your website, like:
 - Example with [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme):
   `curl https://example.com/urllist.txt | xargs -n1 blc`
 
+## Features
+
+- 📂 Reading files or stdin
+- 🗳 Writing files or stdout
+- 🌍 Fetching remote sitemaps with http(s)
+- 💯 Support for `<urlset>` and `<sitemapindex>` sitemaps
+- 🏎 Super speed with compiled code
+- 🎭 Available as *cargo crate* and *npm package* (via **webassembly** 😱)
+- 💻 Available as both a CLI and library
+
 ## Installation
 
 ```sh
@@ -80,11 +90,7 @@ save('urllist.txt', urllist);
 
 ```sh
 $ cat sitemap.xml
-<urlset>
-  <url>
-    <loc>https://example.com</loc>
-  </url>
-</urlset>
+<urlset><url><loc>https://example.com</loc></url></urlset>
 $ sitemap2urllist -f sitemap.xml -o urllist.txt
 $ cat urllist.txt
 https://example.com
