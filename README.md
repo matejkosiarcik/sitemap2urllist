@@ -7,6 +7,7 @@
 <!-- toc -->
 
 - [What & Why](#what--why)
+- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
   - [CLI](#cli)
@@ -14,7 +15,6 @@
 - [Examples](#examples)
 - [Alternatives](#alternatives)
 - [License](#license)
-- [Changes](#changes)
 
 <!-- tocstop -->
 
