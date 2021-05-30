@@ -7,6 +7,7 @@
 <!-- toc -->
 
 - [What & Why](#what--why)
+- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
   - [CLI](#cli)
@@ -14,7 +15,6 @@
 - [Examples](#examples)
 - [Alternatives](#alternatives)
 - [License](#license)
-- [Changes](#changes)
 
 <!-- tocstop -->
 
@@ -38,6 +38,16 @@ I have found it is great for easy high-level testing of your website, like:
   `curl https://example.com/urllist.txt | xargs -n1 hint`
 - Example with [broken-link-checker](https://github.com/stevenvachon/broken-link-checker#readme):
   `curl https://example.com/urllist.txt | xargs -n1 blc`
+
+## Features
+
+- 📂 Reading files or stdin
+- 🗳 Writing files or stdout
+- 🌍 Fetching remote sitemaps with http(s)
+- 💯 Support for `<urlset>` and `<sitemapindex>` sitemaps
+- 🏎 Super speed with compiled code
+- 🎭 Available as *cargo crate* and *npm package* (via **webassembly** 😱)
+- 💻 Available as both a CLI and library
 
 ## Installation
 
@@ -72,7 +82,7 @@ OPTIONS:
 
 ```ts
 import { convert, save } from 'sitemap2urllist';
-const urllist: Array<string> = await convert('sitemap.xml', false);
+const urllist: Array<string> = await convert('sitemap.xml');
 save('urllist.txt', urllist);
 ```
 
@@ -80,13 +90,9 @@ save('urllist.txt', urllist);
 
 ```sh
 $ cat sitemap.xml
-<urlset>
-  <url>
-    <loc>https://example.com</loc>
-  </url>
-</urlset>
+<urlset><url><loc>https://example.com</loc></url></urlset>
 $ sitemap2urllist -f sitemap.xml -o urllist.txt
-$ cat /urllist.txt
+$ cat urllist.txt
 https://example.com
 ```
 
@@ -102,7 +108,3 @@ I could not find anything available to run locally (in a form of cli/app).
 
 The project is licensed under MIT License.
 See [LICENSE](./LICENSE.txt) for full details.
-
-## Changes
-
-Changes in released versions are recorded in [CHANGELOG](./CHANGELOG.md).
