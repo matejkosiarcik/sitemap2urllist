@@ -7,13 +7,12 @@
 
 <!-- toc -->
 
-- [What & Why](#what--why)
-- [Features](#features)
+- [About](#about)
+  - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
   - [CLI](#cli)
   - [Library](#library)
-- [Examples](#examples)
 - [Alternatives](#alternatives)
 - [License](#license)
 
