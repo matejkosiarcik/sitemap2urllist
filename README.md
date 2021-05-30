@@ -86,7 +86,7 @@ $ cat sitemap.xml
   </url>
 </urlset>
 $ sitemap2urllist -f sitemap.xml -o urllist.txt
-$ cat /urllist.txt
+$ cat urllist.txt
 https://example.com
 ```
 
