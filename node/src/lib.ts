@@ -1,6 +1,7 @@
 import * as sitemap2urllist from '../wasm/sitemap2urllist';
 
-export async function convert(input: string, alternate: boolean): Promise<Array<string>> {
+export async function convert(input: string, _alternate?: boolean): Promise<Array<string>> {
+  const alternate = _alternate ?? false;
   return await sitemap2urllist.convert(input, alternate);
 }
 

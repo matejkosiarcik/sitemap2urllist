@@ -72,7 +72,7 @@ OPTIONS:
 
 ```ts
 import { convert, save } from 'sitemap2urllist';
-const urllist: Array<string> = await convert('sitemap.xml', false);
+const urllist: Array<string> = await convert('sitemap.xml');
 save('urllist.txt', urllist);
 ```
 
@@ -102,7 +102,3 @@ I could not find anything available to run locally (in a form of cli/app).
 
 The project is licensed under MIT License.
 See [LICENSE](./LICENSE.txt) for full details.
-
-## Changes
-
-Changes in released versions are recorded in [CHANGELOG](./CHANGELOG.md).
