@@ -1,6 +1,7 @@
 use async_std::task;
 use clap::Clap;
 use sitemap2urllist::{convert, save, version};
+use std::process::exit;
 
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
@@ -20,10 +21,15 @@ struct Args {
     alternate: bool,
 }
 
-fn main() -> Result<()> {
+fn main() {
     let args = Args::parse();
-    task::block_on(async_main(args))?;
-    Ok(())
+    match task::block_on(async_main(args)) {
+        Ok(_) => {}
+        Err(error) => {
+            println!("Error: {}", error);
+            exit(1);
+        }
+    }
 }
 
 async fn async_main(args: Args) -> Result<()> {

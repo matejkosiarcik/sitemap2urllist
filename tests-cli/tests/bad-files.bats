@@ -23,8 +23,7 @@ function teardown() {
     [ ! -e "$tmpdir/out.txt" ]
     [ "$status" -ne 0 ]
     [ "$output" != '' ]
-    # TODO: improve message logging for raw executable and reenable assert
-    # printf '%s' "$output" | grep -iE 'Malformed XML'
+    printf '%s' "$output" | grep 'Error: Malformed XML'
 }
 
 @test 'Test invalid sitemap' {
@@ -37,12 +36,14 @@ function teardown() {
     # then
     [ ! -e "$tmpdir/out.txt" ]
     [ "$status" -ne 0 ]
-    printf '%s' "$output" | grep 'Unknown xml root: foo; expected <urlset> or <sitemapindex>'
+    [ "$output" != '' ]
+    printf '%s' "$output" | grep 'Error: Unknown xml root: <foo>; expected <urlset> or <sitemapindex>'
 }
 
 @test 'Test not existent file' {
-    # TODO: enable!
-    # FIXME: enable!
+    # NOTE: currently this fails in nodejs, because it throws when reading not existent file and rust code probably does not handle it well
+    # TODO: enable
+    # FIXME: enable
     skip
 
     # given
@@ -55,4 +56,6 @@ function teardown() {
     [ ! -e "$tmpdir/out.txt" ]
     [ "$status" -ne 0 ]
     [ "$output" != '' ]
+    printf '%s' "$output" | grep 'Error:'
+    printf '%s' "$output" | grep -i 'No such file or directory'
 }

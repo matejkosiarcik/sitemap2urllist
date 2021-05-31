@@ -3,6 +3,7 @@
 > Simple sitemap.xml to urllist.txt converter
 
 [![npmjs.org version](https://img.shields.io/npm/v/sitemap2urllist)](https://www.npmjs.com/package/sitemap2urllist)
+
 <!-- TODO: [![crates.io version](https://img.shields.io/crates/v/sitemap2urllist)](https://crates.io/crates/sitemap2urllist) -->
 
 <!-- toc -->
@@ -46,7 +47,7 @@ I have found it is great for easy high-level testing of your website, like:
 - 🌍 Fetching remote sitemaps with http(s)
 - 💯 Support for `<urlset>` and `<sitemapindex>` sitemaps
 - 🏎 Super speed with compiled code
-- 🎭 Available as *cargo crate* and *npm package* (via **webassembly** 😱)
+- 🎭 Available as _cargo crate_ and _npm package_ (via **webassembly** 😱)
 - 💻 Available as both a CLI and library
 
 ## Installation

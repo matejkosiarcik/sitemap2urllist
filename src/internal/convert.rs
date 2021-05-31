@@ -48,7 +48,7 @@ async fn collect_entries(location: &str) -> Result<Vec<UrlEntry>> {
                 .for_each(|url| urls.push_back(url));
         } else {
             return Err(Box::from(MyError::new(format!(
-                "Unknown xml root: {}; expected <urlset> or <sitemapindex>.",
+                "Unknown xml root: <{}>; expected <urlset> or <sitemapindex>.",
                 root.name
             ))));
         }
