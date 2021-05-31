@@ -24,11 +24,11 @@ struct Args {
 fn main() {
     let args = Args::parse();
     match task::block_on(async_main(args)) {
-        Ok(_) => {},
+        Ok(_) => {}
         Err(error) => {
             println!("Error: {}", error);
             exit(1);
-        },
+        }
     }
 }
 
