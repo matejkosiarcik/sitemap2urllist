@@ -26,4 +26,4 @@ jobs:
           toolchain: stable
 
       - name: Build 🔧
-        run: make bootstrap lint build test
+        run: make

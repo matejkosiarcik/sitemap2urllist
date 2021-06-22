@@ -34,4 +34,4 @@ jobs:
       - run: |
           curl -fLsS https://deb.nodesource.com/setup_lts.x | bash -
           DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends nodejs jq
-      - run: make bootstrap build test
+      - run: make

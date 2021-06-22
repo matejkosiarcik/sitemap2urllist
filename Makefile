@@ -9,7 +9,7 @@ PROJECT_DIR := $(dir $(abspath $(MAKEFILE_LIST)))
 
 .DEFAULT: all
 .PHONY: all
-all: bootstrap build
+all: bootstrap build test
 
 .PHONY: bootstrap
 bootstrap:
