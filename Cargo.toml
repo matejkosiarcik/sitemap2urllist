@@ -13,7 +13,7 @@ xmltree = "0.10.3"
 url = "2.2.2"
 async-std = "1.9.0"
 clap = "3.0.0-beta.4"
-serde = { version = "1.0.127", features = ["derive"] }
+serde = { version = "1.0.128", features = ["derive"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 surf = "2.2.0"
@@ -21,11 +21,11 @@ getrandom = "0.2.3"
 # clap = { version = "3.0.0-beta.2", optional = true }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-js-sys = "0.3.52"
+js-sys = "0.3.53"
 getrandom = { version = "0.2.3", features = ["js"] }
-reqwest = "0.11.3"
+reqwest = "0.11.4"
 wasm-bindgen = { version = "0.2.76", features = ["serde-serialize"] }
-wasm-bindgen-futures = "0.4.25"
+wasm-bindgen-futures = "0.4.26"
 
 [lib]
 name = "sitemap2urllist"
