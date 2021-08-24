@@ -13,8 +13,6 @@ updates:
     assignees:
       - matejkosiarcik
     open-pull-requests-limit: 1
-    labels:
-      - automerge
 
   - package-ecosystem: npm
     directory: "/node/"
@@ -28,8 +26,6 @@ updates:
     assignees:
       - matejkosiarcik
     open-pull-requests-limit: 1
-    labels:
-      - automerge
 
   - package-ecosystem: cargo
     directory: "/"
@@ -42,8 +38,6 @@ updates:
     assignees:
       - matejkosiarcik
     open-pull-requests-limit: 1
-    labels:
-      - automerge
 
   - package-ecosystem: npm
     directory: "/tests-cli/"
@@ -57,5 +51,3 @@ updates:
     assignees:
       - matejkosiarcik
     open-pull-requests-limit: 1
-    labels:
-      - automerge
