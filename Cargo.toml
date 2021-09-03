@@ -13,7 +13,7 @@ xmltree = "0.10.3"
 url = "2.2.2"
 async-std = "1.10.0"
 clap = "3.0.0-beta.4"
-serde = { version = "1.0.129", features = ["derive"] }
+serde = { version = "1.0.130", features = ["derive"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 surf = "2.3.1"
