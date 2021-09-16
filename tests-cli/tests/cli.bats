@@ -25,6 +25,7 @@ function setup() {
     run $COMMAND --help
     long="$output"
 
+    # then
     [ "$short" = "$long" ]
 }
 
@@ -50,5 +51,6 @@ function setup() {
     run $COMMAND --version
     long="$output"
 
+    # then
     [ "$short" = "$long" ]
 }
