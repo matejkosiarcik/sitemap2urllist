@@ -18,6 +18,7 @@ bootstrap:
 	cargo clippy --help >/dev/null 2>&1 || rustup component add clippy
 	cargo fmt --help >/dev/null 2>&1 || rustup component add rustfmt
 	command -v wasm-pack >/dev/null 2>&1 || curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+	cargo fetch
 
 .PHONY: lint
 lint:
