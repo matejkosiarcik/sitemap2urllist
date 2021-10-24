@@ -121,7 +121,7 @@ fn collect_sitemapindex(root: &Element) -> Result<Vec<String>> {
 
 async fn read(input: &str) -> Result<String> {
     let url = Url::parse(input);
-    let mut content: String = String::new();
+    let content: String;
 
     if input == "-" {
         content = read_stdin()?;
