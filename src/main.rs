@@ -1,11 +1,11 @@
 use async_std::task;
-use clap::Clap;
+use clap::Parser;
 use sitemap2urllist::{convert, save, version};
 use std::process::exit;
 
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
-#[derive(Clap, Debug)]
+#[derive(Parser, Debug)]
 #[clap(name = "sitemap2urllist", version = version())]
 struct Args {
     /// Output path for urllist (- for stdout)
