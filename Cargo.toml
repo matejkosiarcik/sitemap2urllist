@@ -25,7 +25,7 @@ js-sys = "0.3.56"
 getrandom = { version = "0.2.3", features = ["js"] }
 reqwest = "0.11.9"
 wasm-bindgen = { version = "0.2.78", features = ["serde-serialize"] }
-wasm-bindgen-futures = "0.4.28"
+wasm-bindgen-futures = "0.4.29"
 
 [lib]
 name = "sitemap2urllist"
