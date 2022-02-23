@@ -17,12 +17,12 @@ serde = { version = "1.0.136", features = ["derive"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 surf = "2.3.2"
-getrandom = "0.2.4"
+getrandom = "0.2.5"
 # clap = { version = "3.0.0-beta.2", optional = true }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 js-sys = "0.3.56"
-getrandom = { version = "0.2.3", features = ["js"] }
+getrandom = { version = "0.2.5", features = ["js"] }
 reqwest = "0.11.9"
 wasm-bindgen = { version = "0.2.78", features = ["serde-serialize"] }
 wasm-bindgen-futures = "0.4.29"
