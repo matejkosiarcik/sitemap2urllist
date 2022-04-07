@@ -24,7 +24,7 @@ getrandom = "0.2.6"
 js-sys = "0.3.56"
 getrandom = { version = "0.2.6", features = ["js"] }
 reqwest = "0.11.10"
-wasm-bindgen = { version = "0.2.79", features = ["serde-serialize"] }
+wasm-bindgen = { version = "0.2.80", features = ["serde-serialize"] }
 wasm-bindgen-futures = "0.4.29"
 
 [lib]
