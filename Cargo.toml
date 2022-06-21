@@ -11,7 +11,7 @@ description = "Simple sitemap.xml to urllist.txt converter"
 [dependencies]
 xmltree = "0.10.3"
 url = "2.2.2"
-async-std = "1.11.0"
+async-std = "1.12.0"
 clap = { version = "3.2.2", features = ["derive"] }
 serde = { version = "1.0.137", features = ["derive"] }
 
