@@ -20,7 +20,7 @@ surf = "2.3.2"
 getrandom = "0.2.7"
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-js-sys = "0.3.58"
+js-sys = "0.3.59"
 getrandom = { version = "0.2.7", features = ["js"] }
 reqwest = "0.11.11"
 wasm-bindgen = { version = "0.2.81", features = ["serde-serialize"] }
